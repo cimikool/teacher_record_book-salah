@@ -48,33 +48,6 @@
             padding: 15px;
         }
         
-        .nav-tabs {
-            display: flex;
-            background: white;
-            border-radius: 10px;
-            padding: 5px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        
-        .nav-tab {
-            flex: 1;
-            padding: 10px;
-            text-align: center;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: none;
-            background: transparent;
-        }
-        
-        .nav-tab.active {
-            background: #4A90E2;
-            color: white;
-        }
-        
         .tab-content {
             display: none;
         }
@@ -110,7 +83,6 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             cursor: pointer;
             transition: transform 0.2s;
-            position: relative;
         }
         
         .class-card:active {
@@ -153,16 +125,11 @@
             color: #0c5460;
         }
         
-        .lesson-preview {
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 1px solid #eee;
-            font-size: 13px;
-            color: #555;
-        }
-        
-        .lesson-preview strong {
-            color: #333;
+        .student-count {
+            display: inline-block;
+            margin-left: 8px;
+            font-size: 12px;
+            color: #666;
         }
         
         .modal {
@@ -191,11 +158,17 @@
             width: 90%;
             max-width: 500px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            max-height: 90vh;
+            overflow-y: auto;
         }
         
         .modal-header {
             padding: 20px;
             border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            background: white;
+            border-radius: 15px 15px 0 0;
         }
         
         .modal-header h3 {
@@ -240,49 +213,15 @@
             font-family: inherit;
         }
         
-        .suggestions {
-            border: 2px solid #4A90E2;
-            border-top: none;
-            border-radius: 0 0 8px 8px;
-            max-height: 200px;
-            overflow-y: auto;
-            background: white;
-            position: absolute;
-            width: calc(100% - 40px);
-            z-index: 10;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        
-        .suggestion-item {
-            padding: 12px;
-            cursor: pointer;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .suggestion-item:hover {
-            background: #f5f5f5;
-        }
-        
-        .suggestion-item:last-child {
-            border-bottom: none;
-        }
-        
-        .suggestion-title {
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 3px;
-        }
-        
-        .suggestion-type {
-            font-size: 12px;
-            color: #666;
-        }
-        
         .modal-footer {
             padding: 15px 20px;
             border-top: 1px solid #eee;
             display: flex;
             gap: 10px;
+            position: sticky;
+            bottom: 0;
+            background: white;
+            border-radius: 0 0 15px 15px;
         }
         
         .btn {
@@ -314,115 +253,14 @@
             background: #e0e0e0;
         }
         
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+        
         .btn-danger {
             background: #dc3545;
             color: white;
-        }
-        
-        .records-list {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        
-        .record-item {
-            padding: 15px;
-            border-bottom: 1px solid #eee;
-            cursor: pointer;
-        }
-        
-        .record-item:last-child {
-            border-bottom: none;
-        }
-        
-        .record-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-        
-        .record-class {
-            font-weight: bold;
-            color: #4A90E2;
-        }
-        
-        .record-date {
-            font-size: 12px;
-            color: #666;
-        }
-        
-        .record-title {
-            font-size: 14px;
-            color: #333;
-            margin-bottom: 4px;
-        }
-        
-        .record-type {
-            display: inline-block;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 11px;
-            background: #e9ecef;
-            color: #495057;
-        }
-        
-        .export-options {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        
-        .export-btn {
-            width: 100%;
-            padding: 15px;
-            background: #4A90E2;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 10px;
-            cursor: pointer;
-        }
-        
-        .export-btn:active {
-            background: #357ABD;
-        }
-        
-        .class-filter {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 16px;
-            margin-bottom: 15px;
-        }
-        
-        .empty-state {
-            text-align: center;
-            padding: 40px 20px;
-            color: #666;
-        }
-        
-        .empty-state svg {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 15px;
-            opacity: 0.5;
-        }
-        
-        .lesson-number {
-            display: inline-block;
-            background: #4A90E2;
-            color: white;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            margin-left: 8px;
         }
         
         .bottom-nav {
@@ -458,47 +296,196 @@
             margin-bottom: 4px;
         }
         
-        .time-slot {
-            background: #f8f9fa;
-            border: 2px solid #e9ecef;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 12px;
-            position: relative;
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         
-        .time-slot-header {
+        .card h3 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .student-list-item {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
             display: flex;
-            gap: 10px;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .student-list-item:last-child {
+            border-bottom: none;
+        }
+        
+        .student-name {
+            font-size: 14px;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .student-info {
+            font-size: 12px;
+            color: #666;
+            margin-top: 3px;
+        }
+        
+        .btn-small {
+            padding: 6px 12px;
+            font-size: 12px;
+            border-radius: 6px;
+            border: none;
+            background: #4A90E2;
+            color: white;
+            cursor: pointer;
+        }
+        
+        .file-upload {
+            display: none;
+        }
+        
+        .upload-area {
+            border: 2px dashed #4A90E2;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .upload-area:hover {
+            background: #f0f9ff;
+        }
+        
+        .upload-area svg {
+            width: 48px;
+            height: 48px;
+            color: #4A90E2;
             margin-bottom: 10px;
         }
         
-        .time-slot-header input,
-        .time-slot-header select {
-            flex: 1;
+        .diagnostic-note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .diagnostic-note h4 {
+            color: #856404;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        
+        .diagnostic-note p {
+            color: #856404;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .stat-box {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4A90E2;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .attendance-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .attendance-item {
+            display: flex;
+            align-items: center;
             padding: 10px;
-            border: 1px solid #dee2e6;
+            background: #f8f9fa;
             border-radius: 6px;
+        }
+        
+        .attendance-checkbox {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+        
+        .grade-input {
+            width: 80px;
+            padding: 8px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            text-align: center;
             font-size: 14px;
         }
         
-        .delete-slot-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: #dc3545;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-            font-size: 18px;
-            line-height: 1;
+        .holiday-item {
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            border-left: 4px solid #4A90E2;
         }
         
-        .delete-slot-btn:active {
-            background: #c82333;
+        .holiday-date {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .holiday-name {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .holiday-type {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            margin-top: 5px;
+        }
+        
+        .holiday-type.fixed {
+            background: #28a745;
+            color: white;
+        }
+        
+        .holiday-type.approximate {
+            background: #ffc107;
+            color: #000;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
         }
     </style>
 </head>
@@ -513,18 +500,18 @@
         <div id="todayTab" class="tab-content active">
             <div class="date-header">
                 <h2 id="currentDate"></h2>
-                <p>Today's Classes</p>
+                <p id="todayStatus">Today's Classes</p>
             </div>
             <div id="todayClasses"></div>
         </div>
         
-        <!-- All Records Tab -->
+        <!-- Records Tab -->
         <div id="recordsTab" class="tab-content">
             <div class="date-header">
                 <h2>All Records</h2>
                 <p>View and manage your lessons</p>
             </div>
-            <select class="class-filter" id="classFilter">
+            <select class="form-select" id="classFilter" style="margin-bottom: 15px;">
                 <option value="">All Classes</option>
                 <option value="CCS1">CCS1</option>
                 <option value="CCS2">CCS2</option>
@@ -537,37 +524,74 @@
             <div id="recordsList"></div>
         </div>
         
-        <!-- Timetable Tab -->
-        <div id="timetableTab" class="tab-content">
+        <!-- Students Tab -->
+        <div id="studentsTab" class="tab-content">
             <div class="date-header">
-                <h2>📅 Edit Timetable</h2>
-                <p>Set your weekly class schedule</p>
+                <h2>👥 Students Management</h2>
+                <p>Manage students, grades, and attendance</p>
             </div>
             
-            <div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                <div style="margin-bottom: 20px;">
-                    <label style="display: block; font-weight: 600; margin-bottom: 10px;">Select Day:</label>
-                    <select id="daySelector" class="form-select" onchange="displayDaySchedule()">
-                        <option value="Monday">Monday</option>
-                        <option value="Tuesday">Tuesday</option>
-                        <option value="Wednesday">Wednesday</option>
-                        <option value="Thursday">Thursday</option>
-                        <option value="Friday">Friday</option>
-                        <option value="Saturday">Saturday</option>
-                    </select>
+            <div class="card">
+                <label class="form-label">Select Class:</label>
+                <select class="form-select" id="studentClassFilter">
+                    <option value="CCS1">CCS1</option>
+                    <option value="CCS2">CCS2</option>
+                    <option value="CCSF1">CCSF1</option>
+                    <option value="CCSF2">CCSF2</option>
+                    <option value="CCSF3">CCSF3</option>
+                    <option value="2BAC SP1">2BAC SP1</option>
+                    <option value="2BAC SP2">2BAC SP2</option>
+                </select>
+                
+                <div style="margin-top: 20px;">
+                    <input type="file" id="excelUpload" class="file-upload" accept=".xlsx,.xls">
+                    <div class="upload-area" onclick="document.getElementById('excelUpload').click()">
+                        <svg fill="currentColor" viewBox="0 0 20 20"><path d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.413V13H5.5z"/><path d="M9 13h2v5a1 1 0 11-2 0v-5z"/></svg>
+                        <p style="color: #4A90E2; font-weight: 600;">Upload Excel File</p>
+                        <p style="font-size: 12px; color: #666; margin-top: 5px;">Click to select student list (.xlsx or .xls)</p>
+                    </div>
                 </div>
-                
-                <div id="daySchedule"></div>
-                
-                <button class="btn btn-primary" style="width: 100%; margin-top: 15px;" onclick="addTimeSlot()">
-                    + Add Time Slot
-                </button>
-                
-                <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee;">
-                    <button class="btn btn-secondary" style="width: 100%;" onclick="resetToDefaultTimetable()">
-                        🔄 Reset to Default Timetable
-                    </button>
-                </div>
+            </div>
+            
+            <!-- Diagnostic Note -->
+            <div class="diagnostic-note" id="diagnosticNote">
+                <h4>⚠️ Diagnostic Test Note</h4>
+                <p>Diagnostic tests were scheduled at the beginning of the academic year. However, due to significant student absences on the scheduled test days, comprehensive assessment was not possible. The first three lessons were dedicated to reviewing main tenses (Simple Present, Present Continuous, Simple Past) to ensure all students have foundational knowledge before starting Unit 1.</p>
+            </div>
+            
+            <div class="card">
+                <h3>Students (<span id="studentCount">0</span>)</h3>
+                <div id="studentsList"></div>
+            </div>
+            
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+                <button class="btn btn-primary" onclick="openGradeEntry()">📊 Enter Grades</button>
+                <button class="btn btn-secondary" onclick="openAttendanceSheet()">✓ Attendance</button>
+            </div>
+        </div>
+        
+        <!-- Holidays Tab -->
+        <div id="holidaysTab" class="tab-content">
+            <div class="date-header">
+                <h2>📅 Academic Calendar 2025-2026</h2>
+                <p>Moroccan National & Religious Holidays</p>
+            </div>
+            
+            <div class="card">
+                <h3>🇲🇦 National Holidays (Fixed)</h3>
+                <div id="nationalHolidays"></div>
+            </div>
+            
+            <div class="card">
+                <h3>🌙 Religious Holidays (Approximate)</h3>
+                <p style="font-size: 12px; color: #666; margin-bottom: 15px;">⚠️ Dates subject to official moon sighting announcements</p>
+                <div id="religiousHolidays"></div>
+            </div>
+            
+            <div class="card">
+                <h3>📝 Personal Days</h3>
+                <button class="btn btn-primary" onclick="addPersonalDay()">+ Add Leave/Sick Day</button>
+                <div id="personalDays" style="margin-top: 15px;"></div>
             </div>
         </div>
         
@@ -575,17 +599,13 @@
         <div id="exportTab" class="tab-content">
             <div class="date-header">
                 <h2>📥 Export Records</h2>
-                <p>Generate PDF of your record book</p>
+                <p>Generate comprehensive reports</p>
             </div>
-            <div class="export-options">
-                <button class="export-btn" onclick="exportAllPDF()">📄 Export All Classes</button>
-                <button class="export-btn" onclick="exportByClass('CCS1')">Export CCS1</button>
-                <button class="export-btn" onclick="exportByClass('CCS2')">Export CCS2</button>
-                <button class="export-btn" onclick="exportByClass('CCSF1')">Export CCSF1</button>
-                <button class="export-btn" onclick="exportByClass('CCSF2')">Export CCSF2</button>
-                <button class="export-btn" onclick="exportByClass('CCSF3')">Export CCSF3</button>
-                <button class="export-btn" onclick="exportByClass('2BAC SP1')">Export 2BAC SP1</button>
-                <button class="export-btn" onclick="exportByClass('2BAC SP2')">Export 2BAC SP2</button>
+            
+            <div class="card">
+                <button class="btn btn-primary" style="width: 100%; margin-bottom: 10px;" onclick="exportFullRecord()">📄 Export Complete Record Book</button>
+                <button class="btn btn-secondary" style="width: 100%; margin-bottom: 10px;" onclick="exportClassReport()">📊 Export Class Report</button>
+                <button class="btn btn-secondary" style="width: 100%;" onclick="exportGradeSheet()">📈 Export Grade Sheet</button>
             </div>
         </div>
     </div>
@@ -623,10 +643,21 @@
                         </select>
                     </div>
                     
-                    <div class="form-group" style="position: relative;">
+                    <div class="form-group">
                         <label class="form-label">Lesson Title</label>
-                        <input type="text" class="form-input" id="lessonTitle" required autocomplete="off">
-                        <div id="suggestions" class="suggestions" style="display: none;"></div>
+                        <input type="text" class="form-input" id="lessonTitle" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Materials Used</label>
+                        <select class="form-select" id="lessonMaterials">
+                            <option value="Interactive lessons using data show">Interactive lessons using data show</option>
+                            <option value="Textbook exercises">Textbook exercises</option>
+                            <option value="Whiteboard activities">Whiteboard activities</option>
+                            <option value="Worksheets and handouts">Worksheets and handouts</option>
+                            <option value="Audio/Video materials">Audio/Video materials</option>
+                            <option value="Group work activities">Group work activities</option>
+                        </select>
                     </div>
                     
                     <div class="form-group">
@@ -651,8 +682,75 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
-                <button class="btn btn-primary" onclick="saveLesson()">Save</button>
+                <button class="btn btn-secondary" onclick="closeModal('lessonModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="saveLesson()">Save & Mark Attendance</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Attendance Modal -->
+    <div id="attendanceModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>✓ Mark Attendance</h3>
+                <p id="attendanceSubtitle"></p>
+            </div>
+            <div class="modal-body">
+                <div style="margin-bottom: 15px; display: flex; gap: 10px;">
+                    <button class="btn btn-success" onclick="markAllPresent()">✓ All Present</button>
+                    <button class="btn btn-secondary" onclick="markAllAbsent()">✗ All Absent</button>
+                </div>
+                <div class="attendance-grid" id="attendanceList"></div>
+                <div style="margin-top: 15px; padding: 10px; background: #f8f9fa; border-radius: 6px;">
+                    <span>Present: <strong id="presentCount">0</strong></span>
+                    <span style="margin-left: 20px;">Absent: <strong id="absentCount">0</strong></span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('attendanceModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="saveAttendance()">Save Attendance</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Student Profile Modal -->
+    <div id="studentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>👤 Student Profile</h3>
+                <p id="studentName"></p>
+            </div>
+            <div class="modal-body" id="studentProfile"></div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('studentModal')">Close</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Grade Entry Modal -->
+    <div id="gradeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>📊 Enter Grades</h3>
+                <p id="gradeSubtitle"></p>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Select Assessment:</label>
+                    <select class="form-select" id="gradeType" onchange="updateGradeForm()">
+                        <option value="test1">Test 1 (out of 15)</option>
+                        <option value="test2">Test 2 (out of 15)</option>
+                        <option value="globalTest">Global Test (out of 30)</option>
+                        <option value="copyBook">Copy Book (out of 24)</option>
+                        <option value="discipline">Discipline (out of 8)</option>
+                        <option value="oralTest">Oral Test (out of 8)</option>
+                    </select>
+                </div>
+                <div id="gradesList" style="max-height: 400px; overflow-y: auto;"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('gradeModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="saveGrades()">Save Grades</button>
             </div>
         </div>
     </div>
@@ -667,9 +765,13 @@
             <svg fill="currentColor" viewBox="0 0 20 20"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"/></svg>
             <div>Records</div>
         </div>
-        <div class="bottom-nav-item" onclick="switchTab('timetable')">
+        <div class="bottom-nav-item" onclick="switchTab('students')">
+            <svg fill="currentColor" viewBox="0 0 20 20"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/></svg>
+            <div>Students</div>
+        </div>
+        <div class="bottom-nav-item" onclick="switchTab('holidays')">
             <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/></svg>
-            <div>Timetable</div>
+            <div>Calendar</div>
         </div>
         <div class="bottom-nav-item" onclick="switchTab('export')">
             <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
@@ -677,79 +779,34 @@
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
-        // Lesson Templates Database
-        const lessonTemplates = {
-            'CCS1': [
-                {title: "Simple Present - Review", type: "Grammar", points: ["Review of present simple tense forms", "Affirmative, negative, and question structures", "Time expressions with present simple"]},
-                {title: "Present Continuous - Review", type: "Grammar", points: ["Review of present continuous tense", "Actions happening now vs habitual actions", "Stative verbs that don't use continuous"]},
-                {title: "Introducing Unit 1: Personal Relations", type: "Vocabulary", points: ["Key vocabulary for personal relationships", "Communicable and relatable adjectives", "Context and usage in conversations"]},
-                {title: "Reading Activity: Personal Relations", type: "Reading", points: ["Reading for specific information", "Understanding context and main ideas", "Identifying participants and their expectations"]},
-                {title: "Family Relations Vocabulary", type: "Vocabulary", points: ["Family member terms and relationships", "Extended family vocabulary", "Using family vocabulary in context"]},
-                {title: "Describing People: Appearance", type: "Vocabulary", points: ["Physical description vocabulary (tall, short, hair, eyes)", "Question: What does he/she look like?", "Practice describing appearance with examples"]},
-                {title: "Describing People: Character", type: "Vocabulary", points: ["Personality adjectives (friendly, kind, funny)", "Question: What is he/she like?", "Distinguishing appearance from character"]},
-                {title: "Personal Pronouns", type: "Grammar", points: ["Subject pronouns (I, you, he, she, we, they)", "Object pronouns (me, you, him, her, us, them)", "Correct usage in sentences"]},
-                {title: "Verb To Be: Forms and Usage", type: "Grammar", points: ["Affirmative: I am, you are, he/she/it is", "Negative: I'm not, you aren't, he/she isn't", "Questions and short answers"]},
-                {title: "Communication: Greetings", type: "Speaking", points: ["Formal vs informal greetings", "Appropriate responses to greetings", "Cultural awareness in greetings"]},
-                {title: "Communication: Introducing Oneself and Others", type: "Speaking", points: ["How to introduce yourself", "Introducing others in different contexts", "Practice with role-play activities"]},
-                {title: "Nationalities", type: "Vocabulary", points: ["Country names and nationality adjectives", "Patterns: -ian, -ese, -ish, -ch", "Using nationalities in sentences"]},
-                {title: "Writing: Personal Profile", type: "Writing", points: ["Structure of a personal profile", "Including basic information and interests", "Writing 50-80 words about yourself"]},
-                {title: "Practice: Personal Relations", type: "Practice", points: ["Mixed exercises on Unit 1 content", "Speaking practice with partners", "Error correction and feedback"]},
-                {title: "Review: Unit 1 Personal Relations", type: "Review", points: ["Summary of key vocabulary and grammar", "Interactive review activities", "Preparation for Unit 2"]},
-                {title: "Vocabulary: Education and School", type: "Vocabulary", points: ["School-related vocabulary", "Classroom objects and school subjects", "Educational terms and expressions"]},
-                {title: "School Places and Subjects", type: "Vocabulary", points: ["Places in school (library, gym, lab)", "School subjects (Math, Science, English)", "Describing your school timetable"]},
-                {title: "Adverbs of Frequency", type: "Grammar", points: ["Always, usually, often, sometimes, never", "Position of adverbs in sentences", "Expressing how often actions happen"]},
-                {title: "Simple Present Tense", type: "Grammar", points: ["Third person singular -s/-es rules", "Present simple for routines and habits", "Frequency adverbs with present simple"]},
-                {title: "Reading: Education and School", type: "Reading", points: ["Reading text about school routines", "Scanning for specific information", "Understanding school-related contexts"]},
-                {title: "Describing Schools", type: "Vocabulary", points: ["Vocabulary for school facilities", "Comparing different schools", "Describing your ideal school"]},
-                {title: "Writing: Describing My School", type: "Writing", points: ["Paragraph structure for descriptions", "Using school vocabulary in writing", "Writing 60-100 words about your school"]},
-                {title: "Practice: Talking About Daily Activities", type: "Speaking", points: ["Using present simple for daily routines", "Frequency adverbs in conversation", "Discussing school day activities"]},
-                {title: "Test Preview: Units 1 & 2", type: "Review", points: ["Comprehensive review of all grammar and vocabulary", "Practice test questions and activities", "Final clarifications and questions"]},
-                {title: "Test: Units 1 & 2", type: "Assessment", points: ["Written test on vocabulary and grammar", "Reading comprehension section", "Writing task"]},
-                {title: "Test Correction", type: "Review", points: ["Reviewing test answers", "Explaining common errors", "Clarifying difficult concepts"]},
-                {title: "Review and Practice: Units 1-2", type: "Review", points: ["Comprehensive review activities", "Mixed grammar and vocabulary exercises", "Speaking and writing practice"]},
-                {title: "Continuation: Practice and Games", type: "Practice", points: ["Interactive grammar games", "Communicative activities", "Peer practice and feedback"]}
+        // Moroccan Holidays 2025-2026
+        const moroccanHolidays = {
+            national: [
+                {date: '2026-01-01', name: 'New Year\'s Day (Nouvel An)', type: 'fixed'},
+                {date: '2026-01-11', name: 'Independence Manifesto Day', type: 'fixed'},
+                {date: '2026-05-01', name: 'Labour Day (Fête du Travail)', type: 'fixed'},
+                {date: '2026-07-30', name: 'Throne Day (Fête du Trône)', type: 'fixed'},
+                {date: '2026-08-14', name: 'Oued Ed-Dahab Day', type: 'fixed'},
+                {date: '2026-08-20', name: 'Revolution Day', type: 'fixed'},
+                {date: '2026-08-21', name: 'Youth Day (Fête de la Jeunesse)', type: 'fixed'},
+                {date: '2026-11-06', name: 'Green March Day (Marche Verte)', type: 'fixed'},
+                {date: '2026-11-18', name: 'Independence Day', type: 'fixed'}
             ],
-            '2BAC SP1': [
-                {title: "Review: Simple Present Tense", type: "Grammar", points: ["Forms: affirmative, negative, questions", "Uses: routines, habits, general truths", "Time expressions and frequency adverbs"]},
-                {title: "Review: Present Continuous Tense", type: "Grammar", points: ["Formation: am/is/are + verb-ing", "Actions happening now vs temporary situations", "Stative verbs that don't use continuous"]},
-                {title: "Review: Simple Past Tense", type: "Grammar", points: ["Regular and irregular past forms", "Past time expressions", "Narrative uses in storytelling"]},
-                {title: "Introduction to Unit 1: Gift of Youth", type: "Reading", points: ["Explore unit themes: youth talents and success", "Preview key vocabulary", "Discuss gifted young people examples"]},
-                {title: "Vocabulary: Gift of Youth", type: "Vocabulary", points: ["Talent, enthusiasm, determination, vitality", "Success and achievement expressions", "Youth-related terminology"]},
-                {title: "Adjectives and Related Nouns", type: "Vocabulary", points: ["Adjective to noun conversions", "Suffixes: -ness, -ity, -tion, -ance", "Vigorous→vigour, creative→creativity"]},
-                {title: "Word Formation: Nouns to Adjectives", type: "Vocabulary", points: ["Noun to adjective conversions", "Suffixes: -ful, -less, -ous, -al, -ive, -y", "Success→successful, talent→talented"]},
-                {title: "Reading: Generation Z", type: "Reading", points: ["Reading comprehension strategies", "Understanding Gen Z characteristics", "Analyzing text structure and main ideas"]},
-                {title: "Asking and Giving Opinions", type: "Communication", points: ["Formal vs informal opinion expressions", "I think/believe/In my opinion", "Agreeing and disagreeing politely"]},
-                {title: "Gerunds and Infinitives - Session 1", type: "Grammar", points: ["Formation: gerund (verb + -ing), infinitive (to + verb)", "Verbs followed by gerund: enjoy, finish, avoid", "Verbs followed by infinitive: want, decide, hope"]},
-                {title: "Gerunds and Infinitives - Session 2", type: "Grammar", points: ["Verbs that take both forms (same meaning)", "Like, love, hate, prefer, start, begin", "Practice with both structures"]},
-                {title: "Gerunds and Infinitives - Session 3", type: "Grammar", points: ["Verbs with different meanings", "Stop, remember, forget, try, regret", "Contextual practice and application"]},
-                {title: "Writing: Introduction to Descriptive Paragraphs", type: "Writing", points: ["Purpose of descriptive writing", "Elements: abilities, appearance, character", "Analyzing model paragraph about Song"]},
-                {title: "Writing: Crafting Topic Sentences", type: "Writing", points: ["What makes an effective topic sentence", "Main idea and controlling idea", "Practice writing clear topic sentences"]},
-                {title: "Writing: Describing Abilities and Skills", type: "Writing", points: ["Vocabulary for abilities and talents", "Using gerunds: good at playing, enjoys singing", "Supporting with specific examples"]},
-                {title: "Writing: Describing Physical Appearance", type: "Writing", points: ["Physical description vocabulary", "Height, build, hair, eyes, facial features", "Organizing appearance descriptions"]},
-                {title: "Writing: Describing Character and Personality", type: "Writing", points: ["Personality adjectives: modest, sociable, reliable", "Showing character through examples", "Avoiding clichés and generalizations"]},
-                {title: "Writing: Complete Descriptive Paragraph Practice", type: "Writing", points: ["Integrating all description elements", "Writing 80-100 word paragraph", "Peer review and self-editing"]},
-                {title: "Introduction to Unit 2: Humour", type: "Reading", points: ["Introduce humour as a theme", "Types of humour across cultures", "Preview unit vocabulary and goals"]},
-                {title: "Vocabulary: Humour and Comedy", type: "Vocabulary", points: ["Humour and comedy-related terms", "Joke, laughter, funny, hilarious, amusing", "Expressions about jokes and laughter"]},
-                {title: "Modal Verbs - Ability and Permission", type: "Grammar", points: ["Can, could, may for ability and permission", "Present and past modal forms", "Practice with different contexts"]},
-                {title: "Modal Verbs - Obligation and Possibility", type: "Grammar", points: ["Should, must, have to for obligation", "Would, might for possibility and politeness", "Contrasting modal verb meanings"]},
-                {title: "Making Requests: Accepting and Declining", type: "Communication", points: ["Polite requests using modal verbs", "Accepting: Sure, Of course, I'd be happy to", "Declining politely with reasons"]},
-                {title: "Test Preview: Units 1 & 2", type: "Review", points: ["Comprehensive review of all content", "Practice test questions and tasks", "Final clarifications and Q&A session"]},
-                {title: "Test: Units 1 & 2", type: "Assessment", points: ["Reading: youth and humour topics", "Grammar: gerunds, infinitives, modals", "Writing: descriptive paragraph"]},
-                {title: "Test Correction and Analysis", type: "Review", points: ["Review test answers with explanations", "Analyze common errors and mistakes", "Clarify difficult concepts"]},
-                {title: "Review and Consolidation: Units 1-2", type: "Review", points: ["Comprehensive review activities", "Mixed practice exercises", "Preparation for next unit"]}
+            religious: [
+                {date: '2025-09-05', name: 'Mawlid al-Nabi (عيد المولد النبوي)', type: 'approximate', editable: true},
+                {date: '2026-03-20', name: 'Eid al-Fitr Day 1 (عيد الفطر)', type: 'approximate', editable: true},
+                {date: '2026-03-21', name: 'Eid al-Fitr Day 2 (عيد الفطر)', type: 'approximate', editable: true},
+                {date: '2026-05-27', name: 'Eid al-Adha Day 1 (عيد الأضحى)', type: 'approximate', editable: true},
+                {date: '2026-05-28', name: 'Eid al-Adha Day 2 (عيد الأضحى)', type: 'approximate', editable: true},
+                {date: '2026-06-16', name: 'Islamic New Year (رأس السنة الهجرية)', type: 'approximate', editable: true},
+                {date: '2026-08-25', name: 'Mawlid al-Nabi (عيد المولد النبوي)', type: 'approximate', editable: true}
             ]
         };
         
-        // Copy templates for all classes
-        lessonTemplates['CCS2'] = lessonTemplates['CCS1'];
-        lessonTemplates['CCSF1'] = lessonTemplates['CCS1'];
-        lessonTemplates['CCSF2'] = lessonTemplates['CCS1'];
-        lessonTemplates['CCSF3'] = lessonTemplates['CCS1'];
-        lessonTemplates['2BAC SP2'] = lessonTemplates['2BAC SP1'];
-        
-        // Weekly Timetable - LOADS FROM LOCALSTORAGE OR USES DEFAULT
+        // Timetable
         const defaultTimetable = {
             'Monday': [
                 {time: '8:30-9:30', class: 'CCS1'},
@@ -786,126 +843,60 @@
             ]
         };
         
-        // Get timetable from storage or use default
+        let currentEditingLesson = null;
+        let currentAttendanceData = null;
+        
+        // Get timetable
         function getTimetable() {
             const stored = localStorage.getItem('weeklyTimetable');
-            if (stored) {
-                return JSON.parse(stored);
-            }
-            // Save default on first load
-            saveTimetable(defaultTimetable);
+            if (stored) return JSON.parse(stored);
+            localStorage.setItem('weeklyTimetable', JSON.stringify(defaultTimetable));
             return defaultTimetable;
         }
-        
-        // Save timetable to storage
-        function saveTimetable(timetable) {
-            localStorage.setItem('weeklyTimetable', JSON.stringify(timetable));
-        }
-        
-        // Reset to default timetable
-        function resetToDefaultTimetable() {
-            if (confirm('Reset timetable to default schedule? This will erase your custom timetable.')) {
-                saveTimetable(defaultTimetable);
-                displayDaySchedule();
-                displayTodayClasses();
-                alert('✓ Timetable reset to default!');
-            }
-        }
-        
-        // Display day schedule for editing
-        function displayDaySchedule() {
-            const day = document.getElementById('daySelector').value;
-            const timetable = getTimetable();
-            const schedule = timetable[day] || [];
-            const container = document.getElementById('daySchedule');
-            
-            if (schedule.length === 0) {
-                container.innerHTML = '<p style="text-align: center; color: #666; padding: 20px;">No classes for this day. Click "Add Time Slot" below.</p>';
-                return;
-            }
-            
-            container.innerHTML = schedule.map((slot, index) => `
-                <div class="time-slot">
-                    <button class="delete-slot-btn" onclick="deleteTimeSlot(${index})">×</button>
-                    <div class="time-slot-header">
-                        <input type="text" 
-                               value="${slot.time}" 
-                               placeholder="8:00-9:00"
-                               onchange="updateTimeSlot(${index}, 'time', this.value)">
-                        <select onchange="updateTimeSlot(${index}, 'class', this.value)">
-                            <option value="">Select Class</option>
-                            <option value="CCS1" ${slot.class === 'CCS1' ? 'selected' : ''}>CCS1</option>
-                            <option value="CCS2" ${slot.class === 'CCS2' ? 'selected' : ''}>CCS2</option>
-                            <option value="CCSF1" ${slot.class === 'CCSF1' ? 'selected' : ''}>CCSF1</option>
-                            <option value="CCSF2" ${slot.class === 'CCSF2' ? 'selected' : ''}>CCSF2</option>
-                            <option value="CCSF3" ${slot.class === 'CCSF3' ? 'selected' : ''}>CCSF3</option>
-                            <option value="2BAC SP1" ${slot.class === '2BAC SP1' ? 'selected' : ''}>2BAC SP1</option>
-                            <option value="2BAC SP2" ${slot.class === '2BAC SP2' ? 'selected' : ''}>2BAC SP2</option>
-                        </select>
-                    </div>
-                </div>
-            `).join('');
-        }
-        
-        // Add new time slot
-        function addTimeSlot() {
-            const day = document.getElementById('daySelector').value;
-            const timetable = getTimetable();
-            
-            if (!timetable[day]) {
-                timetable[day] = [];
-            }
-            
-            timetable[day].push({
-                time: '8:00-9:00',
-                class: 'CCS1'
-            });
-            
-            saveTimetable(timetable);
-            displayDaySchedule();
-        }
-        
-        // Update time slot
-        function updateTimeSlot(index, field, value) {
-            const day = document.getElementById('daySelector').value;
-            const timetable = getTimetable();
-            
-            if (timetable[day] && timetable[day][index]) {
-                timetable[day][index][field] = value;
-                saveTimetable(timetable);
-                displayTodayClasses(); // Refresh if editing today's schedule
-            }
-        }
-        
-        // Delete time slot
-        function deleteTimeSlot(index) {
-            if (confirm('Delete this time slot?')) {
-                const day = document.getElementById('daySelector').value;
-                const timetable = getTimetable();
-                
-                if (timetable[day]) {
-                    timetable[day].splice(index, 1);
-                    saveTimetable(timetable);
-                    displayDaySchedule();
-                    displayTodayClasses();
-                }
-            }
-        }
-        
-        // Initialize
-        let currentEditingLesson = null;
-        const weeklyTimetable = getTimetable();
         
         // Display current date
         function displayCurrentDate() {
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             const date = new Date().toLocaleDateString('en-US', options);
             document.getElementById('currentDate').textContent = date;
+            
+            // Check if today is a holiday
+            const todayStr = new Date().toISOString().split('T')[0];
+            const allHolidays = [...moroccanHolidays.national, ...moroccanHolidays.religious];
+            const todayHoliday = allHolidays.find(h => h.date === todayStr);
+            
+            if (todayHoliday) {
+                document.getElementById('todayStatus').innerHTML = `🎉 Public Holiday: ${todayHoliday.name}`;
+            }
         }
         
         // Get day name
         function getDayName(date = new Date()) {
             return date.toLocaleDateString('en-US', { weekday: 'long' });
+        }
+        
+        // Get/Set data functions
+        function getLessons() {
+            return JSON.parse(localStorage.getItem('teacherLessons') || '[]');
+        }
+        
+        function getStudents(className) {
+            const allStudents = JSON.parse(localStorage.getItem('students') || '{}');
+            return allStudents[className] || [];
+        }
+        
+        function saveStudents(className, students) {
+            const allStudents = JSON.parse(localStorage.getItem('students') || '{}');
+            allStudents[className] = students;
+            localStorage.setItem('students', JSON.stringify(allStudents));
+        }
+        
+        function getAttendance() {
+            return JSON.parse(localStorage.getItem('attendance') || '{}');
+        }
+        
+        function saveAttendance(data) {
+            localStorage.setItem('attendance', JSON.stringify(data));
         }
         
         // Display today's classes
@@ -923,29 +914,29 @@
             const lessons = getLessons();
             const todayDate = new Date().toISOString().split('T')[0];
             
-            container.innerHTML = classes.map((classInfo, index) => {
+            container.innerHTML = classes.map(classInfo => {
                 const logged = lessons.find(l => 
                     l.class === classInfo.class && 
                     l.date === todayDate
                 );
                 
-                const classLessons = lessons.filter(l => l.class === classInfo.class);
-                const lessonNumber = classLessons.length + 1;
+                const students = getStudents(classInfo.class);
+                const studentCount = students.length;
                 
                 return `
                     <div class="class-card ${logged ? 'logged' : ''}" onclick="openLessonModal('${classInfo.class}', '${classInfo.time}')">
                         <div class="class-time">${classInfo.time}</div>
                         <div class="class-name">
                             ${classInfo.class}
-                            <span class="lesson-number">#${lessonNumber}</span>
+                            ${studentCount > 0 ? `<span class="student-count">👥 ${studentCount}</span>` : ''}
                         </div>
                         <span class="class-status ${logged ? 'status-logged' : 'status-pending'}">
                             ${logged ? '✓ Logged' : 'Tap to Log'}
                         </span>
                         ${logged ? `
-                            <div class="lesson-preview">
+                            <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee; font-size: 13px;">
                                 <strong>${logged.title}</strong><br>
-                                <span class="record-type">${logged.type}</span>
+                                <span style="color: #666;">${logged.materials}</span>
                             </div>
                         ` : ''}
                     </div>
@@ -963,54 +954,13 @@
             document.getElementById('lessonForm').reset();
             document.getElementById('lessonClass').value = className;
             document.getElementById('lessonDate').value = new Date().toISOString().split('T')[0];
+            document.getElementById('lessonMaterials').value = 'Interactive lessons using data show';
             document.getElementById('lessonModal').classList.add('active');
         }
         
         // Close modal
-        function closeModal() {
-            document.getElementById('lessonModal').classList.remove('active');
-            document.getElementById('suggestions').style.display = 'none';
-        }
-        
-        // Title autocomplete
-        document.getElementById('lessonTitle').addEventListener('input', function(e) {
-            const query = e.target.value.toLowerCase();
-            const className = document.getElementById('lessonClass').value;
-            const suggestions = document.getElementById('suggestions');
-            
-            if (query.length < 2) {
-                suggestions.style.display = 'none';
-                return;
-            }
-            
-            const templates = lessonTemplates[className] || [];
-            const matches = templates.filter(t => 
-                t.title.toLowerCase().includes(query)
-            );
-            
-            if (matches.length === 0) {
-                suggestions.style.display = 'none';
-                return;
-            }
-            
-            suggestions.innerHTML = matches.map(match => `
-                <div class="suggestion-item" onclick='selectSuggestion(${JSON.stringify(match)})'>
-                    <div class="suggestion-title">${match.title}</div>
-                    <div class="suggestion-type">${match.type}</div>
-                </div>
-            `).join('');
-            
-            suggestions.style.display = 'block';
-        });
-        
-        // Select suggestion
-        function selectSuggestion(lesson) {
-            document.getElementById('lessonTitle').value = lesson.title;
-            document.getElementById('lessonType').value = lesson.type;
-            document.getElementById('point1').value = lesson.points[0] || '';
-            document.getElementById('point2').value = lesson.points[1] || '';
-            document.getElementById('point3').value = lesson.points[2] || '';
-            document.getElementById('suggestions').style.display = 'none';
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
         }
         
         // Save lesson
@@ -1027,6 +977,7 @@
                 date: document.getElementById('lessonDate').value,
                 type: document.getElementById('lessonType').value,
                 title: document.getElementById('lessonTitle').value,
+                materials: document.getElementById('lessonMaterials').value,
                 points: [
                     document.getElementById('point1').value,
                     document.getElementById('point2').value,
@@ -1045,16 +996,371 @@
             }
             
             localStorage.setItem('teacherLessons', JSON.stringify(lessons));
-            closeModal();
+            closeModal('lessonModal');
+            
+            // Open attendance modal
+            currentAttendanceData = lesson;
+            openAttendanceModal();
+            
             displayTodayClasses();
             displayAllRecords();
-            
-            alert('✓ Lesson saved successfully!');
         }
         
-        // Get lessons from storage
-        function getLessons() {
-            return JSON.parse(localStorage.getItem('teacherLessons') || '[]');
+        // Open attendance modal
+        function openAttendanceModal() {
+            const lesson = currentAttendanceData;
+            document.getElementById('attendanceSubtitle').textContent = 
+                `${lesson.class} - ${lesson.date} - ${lesson.title}`;
+            
+            const students = getStudents(lesson.class);
+            if (students.length === 0) {
+                alert('No students in this class. Please upload student list first.');
+                return;
+            }
+            
+            const attendanceList = document.getElementById('attendanceList');
+            attendanceList.innerHTML = students.map((student, index) => {
+                const absences = student.attendance?.filter(a => !a.present).length || 0;
+                return `
+                    <div class="attendance-item">
+                        <input type="checkbox" class="attendance-checkbox" id="student-${index}" checked>
+                        <div style="flex: 1;">
+                            <div class="student-name">${student.name}</div>
+                            <div class="student-info">Previous absences: ${absences}</div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            updateAttendanceCount();
+            document.getElementById('attendanceModal').classList.add('active');
+        }
+        
+        function openAttendanceSheet() {
+            const className = document.getElementById('studentClassFilter').value;
+            const students = getStudents(className);
+            
+            if (students.length === 0) {
+                alert('No students in this class. Please upload student list first.');
+                return;
+            }
+            
+            currentAttendanceData = {
+                class: className,
+                date: new Date().toISOString().split('T')[0],
+                title: 'Manual Attendance Entry'
+            };
+            
+            openAttendanceModal();
+        }
+        
+        // Attendance functions
+        function markAllPresent() {
+            const checkboxes = document.querySelectorAll('.attendance-checkbox');
+            checkboxes.forEach(cb => cb.checked = true);
+            updateAttendanceCount();
+        }
+        
+        function markAllAbsent() {
+            const checkboxes = document.querySelectorAll('.attendance-checkbox');
+            checkboxes.forEach(cb => cb.checked = false);
+            updateAttendanceCount();
+        }
+        
+        function updateAttendanceCount() {
+            const checkboxes = document.querySelectorAll('.attendance-checkbox');
+            const present = Array.from(checkboxes).filter(cb => cb.checked).length;
+            const absent = checkboxes.length - present;
+            document.getElementById('presentCount').textContent = present;
+            document.getElementById('absentCount').textContent = absent;
+        }
+        
+        document.addEventListener('change', function(e) {
+            if (e.target.classList.contains('attendance-checkbox')) {
+                updateAttendanceCount();
+            }
+        });
+        
+        function saveAttendance() {
+            const lesson = currentAttendanceData;
+            const className = lesson.class;
+            const students = getStudents(className);
+            const checkboxes = document.querySelectorAll('.attendance-checkbox');
+            
+            students.forEach((student, index) => {
+                if (!student.attendance) student.attendance = [];
+                
+                const isPresent = checkboxes[index].checked;
+                student.attendance.push({
+                    date: lesson.date,
+                    present: isPresent,
+                    lesson: lesson.title
+                });
+            });
+            
+            saveStudents(className, students);
+            closeModal('attendanceModal');
+            alert('✓ Attendance saved!');
+            displayStudentsList();
+        }
+        
+        // Excel upload
+        document.getElementById('excelUpload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, {type: 'array'});
+                    const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+                    const jsonData = XLSX.utils.sheet_to_json(firstSheet, {header: 1});
+                    
+                    const studentNames = jsonData
+                        .filter(row => row[0] && typeof row[0] === 'string')
+                        .map(row => ({
+                            name: row[0].trim(),
+                            grades: {
+                                test1: null,
+                                test2: null,
+                                globalTest: null,
+                                copyBook: null,
+                                discipline: null,
+                                oralTest: null
+                            },
+                            attendance: [],
+                            hasCopyBook: false
+                        }));
+                    
+                    if (studentNames.length === 0) {
+                        alert('No valid student names found in the file.');
+                        return;
+                    }
+                    
+                    const className = document.getElementById('studentClassFilter').value;
+                    saveStudents(className, studentNames);
+                    
+                    alert(`✓ Successfully imported ${studentNames.length} students!`);
+                    displayStudentsList();
+                } catch (error) {
+                    alert('Error reading file. Please ensure it\'s a valid Excel file (.xlsx or .xls)');
+                    console.error(error);
+                }
+            };
+            reader.readAsArrayBuffer(file);
+        });
+        
+        // Display students list
+        function displayStudentsList() {
+            const className = document.getElementById('studentClassFilter').value;
+            const students = getStudents(className);
+            document.getElementById('studentCount').textContent = students.length;
+            
+            const container = document.getElementById('studentsList');
+            if (students.length === 0) {
+                container.innerHTML = '<div class="empty-state"><p>No students yet. Upload Excel file to add students.</p></div>';
+                return;
+            }
+            
+            container.innerHTML = students.map((student, index) => {
+                const absences = student.attendance?.filter(a => !a.present).length || 0;
+                const totalGrade = calculateTotalGrade(student.grades);
+                return `
+                    <div class="student-list-item">
+                        <div>
+                            <div class="student-name">${index + 1}. ${student.name}</div>
+                            <div class="student-info">
+                                Grade: ${totalGrade !== null ? `${totalGrade}/100` : 'Not graded'} | 
+                                Absences: ${absences}
+                            </div>
+                        </div>
+                        <button class="btn-small" onclick="viewStudentProfile('${className}', ${index})">View</button>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        // Calculate total grade
+        function calculateTotalGrade(grades) {
+            const g = grades;
+            if (g.test1 === null || g.test2 === null || g.globalTest === null) return null;
+            
+            const tests = (g.test1 || 0) + (g.test2 || 0) + (g.globalTest || 0);
+            const activities = (g.copyBook || 0) + (g.discipline || 0) + (g.oralTest || 0);
+            return Math.round((tests + activities) * 10) / 10;
+        }
+        
+        // View student profile
+        function viewStudentProfile(className, studentIndex) {
+            const students = getStudents(className);
+            const student = students[studentIndex];
+            
+            document.getElementById('studentName').textContent = `${student.name} - ${className}`;
+            
+            const totalGrade = calculateTotalGrade(student.grades);
+            const absences = student.attendance?.filter(a => !a.present).length || 0;
+            const totalClasses = student.attendance?.length || 0;
+            const attendanceRate = totalClasses > 0 ? Math.round((totalClasses - absences) / totalClasses * 100) : 100;
+            
+            // Get absence dates
+            const absenceDates = student.attendance?.filter(a => !a.present).map(a => ({
+                date: new Date(a.date).toLocaleDateString(),
+                lesson: a.lesson
+            })) || [];
+            
+            const profile = `
+                <div class="card">
+                    <h3>📊 Academic Performance</h3>
+                    <div class="stat-grid">
+                        <div class="stat-box">
+                            <div class="stat-value">${totalGrade !== null ? totalGrade : '--'}</div>
+                            <div class="stat-label">Final Grade /100</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">${attendanceRate}%</div>
+                            <div class="stat-label">Attendance Rate</div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 20px;">
+                        <p><strong>Tests (60%):</strong></p>
+                        <p>• Test 1: ${student.grades.test1 !== null ? `${student.grades.test1}/15` : 'Not graded'}</p>
+                        <p>• Test 2: ${student.grades.test2 !== null ? `${student.grades.test2}/15` : 'Not graded'}</p>
+                        <p>• Global Test: ${student.grades.globalTest !== null ? `${student.grades.globalTest}/30` : 'Not graded'}</p>
+                        
+                        <p style="margin-top: 15px;"><strong>Activities (40%):</strong></p>
+                        <p>• Copy Book: ${student.grades.copyBook !== null ? `${student.grades.copyBook}/24` : 'Not graded'} ${student.hasCopyBook ? '✓' : '✗'}</p>
+                        <p>• Discipline: ${student.grades.discipline !== null ? `${student.grades.discipline}/8` : 'Not graded'}</p>
+                        <p>• Oral Test: ${student.grades.oralTest !== null ? `${student.grades.oralTest}/8` : 'Not graded'}</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>✓ Attendance Record</h3>
+                    <p>Total Classes: ${totalClasses}</p>
+                    <p>Present: ${totalClasses - absences} days</p>
+                    <p>Absent: ${absences} days (${100 - attendanceRate}%)</p>
+                    
+                    ${absenceDates.length > 0 ? `
+                        <div style="margin-top: 15px;">
+                            <p><strong>Absence Dates:</strong></p>
+                            ${absenceDates.map(a => `<p style="font-size: 13px; color: #666;">• ${a.date} - ${a.lesson}</p>`).join('')}
+                        </div>
+                    ` : '<p style="margin-top: 10px; color: #28a745;">Perfect attendance! 🎉</p>'}
+                </div>
+                
+                <div class="card">
+                    <h3>📓 Copy Book Status</h3>
+                    <p>Has Copy Book: ${student.hasCopyBook ? '✅ Yes' : '❌ No'}</p>
+                    ${student.hasCopyBook && student.grades.copyBook !== null ? 
+                        `<p>Grade: ${student.grades.copyBook}/24 (${Math.round(student.grades.copyBook/24*100)}%)</p>` : 
+                        ''}
+                </div>
+            `;
+            
+            document.getElementById('studentProfile').innerHTML = profile;
+            document.getElementById('studentModal').classList.add('active');
+        }
+        
+        // Grade entry
+        function openGradeEntry() {
+            const className = document.getElementById('studentClassFilter').value;
+            const students = getStudents(className);
+            
+            if (students.length === 0) {
+                alert('No students in this class. Please upload student list first.');
+                return;
+            }
+            
+            document.getElementById('gradeSubtitle').textContent = className;
+            updateGradeForm();
+            document.getElementById('gradeModal').classList.add('active');
+        }
+        
+        function updateGradeForm() {
+            const className = document.getElementById('studentClassFilter').value;
+            const students = getStudents(className);
+            const gradeType = document.getElementById('gradeType').value;
+            
+            const maxGrades = {
+                test1: 15,
+                test2: 15,
+                globalTest: 30,
+                copyBook: 24,
+                discipline: 8,
+                oralTest: 8
+            };
+            
+            const container = document.getElementById('gradesList');
+            container.innerHTML = students.map((student, index) => `
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: #f8f9fa; border-radius: 6px; margin-bottom: 8px;">
+                    <span>${index + 1}. ${student.name}</span>
+                    <div style="display: flex; align-items: center; gap: 5px;">
+                        <input type="number" 
+                               class="grade-input" 
+                               id="grade-${index}"
+                               min="0" 
+                               max="${maxGrades[gradeType]}"
+                               step="0.5"
+                               value="${student.grades[gradeType] || ''}"
+                               placeholder="--">
+                        <span>/${maxGrades[gradeType]}</span>
+                        ${gradeType === 'copyBook' ? `
+                            <label style="margin-left: 10px; font-size: 12px;">
+                                <input type="checkbox" 
+                                       id="copybook-${index}"
+                                       ${student.hasCopyBook ? 'checked' : ''}>
+                                Has book
+                            </label>
+                        ` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function saveGrades() {
+            const className = document.getElementById('studentClassFilter').value;
+            const students = getStudents(className);
+            const gradeType = document.getElementById('gradeType').value;
+            
+            students.forEach((student, index) => {
+                const gradeInput = document.getElementById(`grade-${index}`);
+                const value = gradeInput.value;
+                student.grades[gradeType] = value !== '' ? parseFloat(value) : null;
+                
+                if (gradeType === 'copyBook') {
+                    const copyBookCheck = document.getElementById(`copybook-${index}`);
+                    student.hasCopyBook = copyBookCheck.checked;
+                }
+            });
+            
+            saveStudents(className, students);
+            closeModal('gradeModal');
+            alert('✓ Grades saved!');
+            displayStudentsList();
+        }
+        
+        // Display holidays
+        function displayHolidays() {
+            const nationalContainer = document.getElementById('nationalHolidays');
+            nationalContainer.innerHTML = moroccanHolidays.national.map(holiday => `
+                <div class="holiday-item">
+                    <div class="holiday-date">${new Date(holiday.date).toLocaleDateString('en-US', {month: 'long', day: 'numeric', year: 'numeric'})}</div>
+                    <div class="holiday-name">${holiday.name}</div>
+                    <span class="holiday-type fixed">✓ Fixed</span>
+                </div>
+            `).join('');
+            
+            const religiousContainer = document.getElementById('religiousHolidays');
+            religiousContainer.innerHTML = moroccanHolidays.religious.map(holiday => `
+                <div class="holiday-item">
+                    <div class="holiday-date">~${new Date(holiday.date).toLocaleDateString('en-US', {month: 'long', day: 'numeric', year: 'numeric'})}</div>
+                    <div class="holiday-name">${holiday.name}</div>
+                    <span class="holiday-type approximate">⚠️ Approximate</span>
+                    <button class="btn-small" style="margin-top: 5px;" onclick="editHolidayDate('${holiday.date}')">✏️ Update</button>
+                </div>
+            `).join('');
         }
         
         // Display all records
@@ -1071,43 +1377,24 @@
                 return;
             }
             
-            container.innerHTML = '<div class="records-list">' + filtered.map(lesson => `
-                <div class="record-item" onclick='editLesson(${JSON.stringify(lesson)})'>
-                    <div class="record-header">
-                        <span class="record-class">${lesson.class}</span>
-                        <span class="record-date">${new Date(lesson.date).toLocaleDateString()}</span>
+            container.innerHTML = filtered.map(lesson => `
+                <div class="class-card" onclick='editLesson(${JSON.stringify(lesson).replace(/'/g, "&#39;")})'>
+                    <div class="class-time">${new Date(lesson.date).toLocaleDateString()}</div>
+                    <div class="class-name">${lesson.class} - ${lesson.title}</div>
+                    <div style="font-size: 13px; color: #666; margin-top: 5px;">
+                        ${lesson.type} • ${lesson.materials}
                     </div>
-                    <div class="record-title">${lesson.title}</div>
-                    <span class="record-type">${lesson.type}</span>
                 </div>
-            `).join('') + '</div>';
-        }
-        
-        // Edit lesson
-        function editLesson(lesson) {
-            currentEditingLesson = lesson;
-            document.getElementById('modalTitle').textContent = `Edit Lesson: ${lesson.class}`;
-            document.getElementById('lessonId').value = lesson.id;
-            document.getElementById('lessonClass').value = lesson.class;
-            document.getElementById('lessonDate').value = lesson.date;
-            document.getElementById('lessonType').value = lesson.type;
-            document.getElementById('lessonTitle').value = lesson.title;
-            document.getElementById('point1').value = lesson.points[0] || '';
-            document.getElementById('point2').value = lesson.points[1] || '';
-            document.getElementById('point3').value = lesson.points[2] || '';
-            document.getElementById('homework').value = lesson.homework || '';
-            document.getElementById('lessonModal').classList.add('active');
+            `).join('');
         }
         
         // Switch tabs
         function switchTab(tab) {
-            // Update nav
             document.querySelectorAll('.bottom-nav-item').forEach(item => {
                 item.classList.remove('active');
             });
             event.target.closest('.bottom-nav-item').classList.add('active');
             
-            // Update content
             document.querySelectorAll('.tab-content').forEach(content => {
                 content.classList.remove('active');
             });
@@ -1118,43 +1405,48 @@
             } else if (tab === 'records') {
                 document.getElementById('recordsTab').classList.add('active');
                 displayAllRecords();
-            } else if (tab === 'timetable') {
-                document.getElementById('timetableTab').classList.add('active');
-                displayDaySchedule();
+            } else if (tab === 'students') {
+                document.getElementById('studentsTab').classList.add('active');
+                displayStudentsList();
+            } else if (tab === 'holidays') {
+                document.getElementById('holidaysTab').classList.add('active');
+                displayHolidays();
             } else if (tab === 'export') {
                 document.getElementById('exportTab').classList.add('active');
             }
         }
         
         // Export functions
-        function exportAllPDF() {
-            alert('📄 Generating PDF for all classes...\n\nThis feature requires jsPDF library. PDF will be generated with all your records.');
+        function exportFullRecord() {
+            alert('📄 Generating complete record book with all students, grades, attendance, and lessons...\n\nThis feature will generate a comprehensive PDF report.');
         }
         
-        function exportByClass(className) {
-            const lessons = getLessons().filter(l => l.class === className);
-            if (lessons.length === 0) {
-                alert('No lessons recorded for ' + className);
-                return;
-            }
-            alert(`📄 Generating PDF for ${className}...\n\n${lessons.length} lessons found.`);
+        function exportClassReport() {
+            alert('📊 Generating class statistics report...');
         }
         
-        // Class filter
+        function exportGradeSheet() {
+            alert('📈 Generating grade sheet...');
+        }
+        
+        // Event listeners
         document.getElementById('classFilter').addEventListener('change', displayAllRecords);
+        document.getElementById('studentClassFilter').addEventListener('change', displayStudentsList);
         
-        // Initialize app
+        document.getElementById('lessonModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal('lessonModal');
+        });
+        
+        document.getElementById('attendanceModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal('attendanceModal');
+        });
+        
+        // Initialize
         displayCurrentDate();
         displayTodayClasses();
         displayAllRecords();
-        displayDaySchedule();
-        
-        // Close modal on outside click
-        document.getElementById('lessonModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
-        });
+        displayStudentsList();
+        displayHolidays();
     </script>
 </body>
 </html>
