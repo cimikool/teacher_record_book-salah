@@ -1,0 +1,3197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Import Lessons - Teacher Record Book</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        
+        .info-box h3 {
+            color: #1976D2;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .info-box p {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .stat-box {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #4A90E2;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .class-list {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .class-list h4 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .class-item {
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 13px;
+            color: #555;
+        }
+        
+        .class-item:last-child {
+            border-bottom: none;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 10px;
+        }
+        
+        .btn-primary {
+            background: #4A90E2;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #357ABD;
+        }
+        
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+        
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .warning p {
+            color: #856404;
+            font-size: 13px;
+        }
+        
+        #status {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: none;
+            font-size: 14px;
+        }
+        
+        .success-message {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            color: #155724;
+            display: block;
+        }
+        
+        .error-message {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            color: #721c24;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 Import Previous Lessons</h1>
+        <p class="subtitle">Load all lessons from September to November 2025</p>
+        
+        <div class="info-box">
+            <h3>What will be imported:</h3>
+            <p>All your lessons from September 8, 2025 to November 11, 2025, following your actual teaching schedule and timetable.</p>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-box">
+                <div class="stat-value">194</div>
+                <div class="stat-label">Total Lessons</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value">7</div>
+                <div class="stat-label">Classes</div>
+            </div>
+        </div>
+        
+        <div class="class-list">
+            <h4>Lessons per class:</h4>
+            <div class="class-item">✓ CCS1: 28 lessons (Units 1-2)</div>
+            <div class="class-item">✓ CCS2: 28 lessons (Units 1-2)</div>
+            <div class="class-item">✓ CCSF1: 28 lessons (Units 1-2)</div>
+            <div class="class-item">✓ CCSF2: 28 lessons (Units 1-2)</div>
+            <div class="class-item">✓ CCSF3: 28 lessons (Units 1-2)</div>
+            <div class="class-item">✓ 2BAC SP1: 27 lessons (Units 1-2)</div>
+            <div class="class-item">✓ 2BAC SP2: 27 lessons (Units 1-2)</div>
+        </div>
+        
+        <div class="warning">
+            <p><strong>⚠️ Important:</strong> This will ADD lessons to your record book. Any existing lessons will be kept. If you've already logged some lessons, you may have duplicates.</p>
+        </div>
+        
+        <div id="status"></div>
+        
+        <button class="btn btn-primary" onclick="importLessons()">📥 Import All Lessons</button>
+        <button class="btn btn-secondary" onclick="goToApp()">📱 Go to Record Book App</button>
+    </div>
+
+    <script>
+        const lessonsData = [
+  {
+    "id": "CCS1-2025-09-08-1764165710551",
+    "class": "CCS1",
+    "date": "2025-09-08",
+    "type": "Grammar",
+    "title": "Review: Simple Present Tense",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Forms: affirmative, negative, questions",
+      "Uses: routines, habits, general truths",
+      "Time expressions and frequency adverbs"
+    ],
+    "homework": "Practice worksheet - Simple Present",
+    "timestamp": "2025-09-08T00:00:00.301Z"
+  },
+  {
+    "id": "CCS2-2025-09-08-1764165710551",
+    "class": "CCS2",
+    "date": "2025-09-08",
+    "type": "Grammar",
+    "title": "Review: Simple Present Tense",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Forms: affirmative, negative, questions",
+      "Uses: routines, habits, general truths",
+      "Time expressions and frequency adverbs"
+    ],
+    "homework": "Practice worksheet - Simple Present",
+    "timestamp": "2025-09-08T00:00:00.196Z"
+  },
+  {
+    "id": "CCSF3-2025-09-08-1764165710551",
+    "class": "CCSF3",
+    "date": "2025-09-08",
+    "type": "Grammar",
+    "title": "Review: Simple Present Tense",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Forms: affirmative, negative, questions",
+      "Uses: routines, habits, general truths",
+      "Time expressions and frequency adverbs"
+    ],
+    "homework": "Practice worksheet - Simple Present",
+    "timestamp": "2025-09-08T00:00:00.785Z"
+  },
+  {
+    "id": "CCSF2-2025-09-08-1764165710551",
+    "class": "CCSF2",
+    "date": "2025-09-08",
+    "type": "Grammar",
+    "title": "Review: Simple Present Tense",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Forms: affirmative, negative, questions",
+      "Uses: routines, habits, general truths",
+      "Time expressions and frequency adverbs"
+    ],
+    "homework": "Practice worksheet - Simple Present",
+    "timestamp": "2025-09-08T00:00:00.764Z"
+  },
+  {
+    "id": "CCSF1-2025-09-09-1764165710551",
+    "class": "CCSF1",
+    "date": "2025-09-09",
+    "type": "Grammar",
+    "title": "Review: Simple Present Tense",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Forms: affirmative, negative, questions",
+      "Uses: routines, habits, general truths",
+      "Time expressions and frequency adverbs"
+    ],
+    "homework": "Practice worksheet - Simple Present",
+    "timestamp": "2025-09-09T00:00:00.272Z"
+  },
+  {
+    "id": "CCSF2-2025-09-09-1764165710551",
+    "class": "CCSF2",
+    "date": "2025-09-09",
+    "type": "Grammar",
+    "title": "Review: Present Continuous Tense",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Formation: am/is/are + verb-ing",
+      "Actions happening now vs temporary situations",
+      "Stative verbs that don't use continuous"
+    ],
+    "homework": "Exercises page 12-13",
+    "timestamp": "2025-09-09T00:00:00.948Z"
+  },
+  {
+    "id": "2BAC SP1-2025-09-10-1764165710551",
+    "class": "2BAC SP1",
+    "date": "2025-09-10",
+    "type": "Grammar",
+    "title": "Review: Three Main Tenses",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Present simple, continuous, and past",
+      "Form and usage differences",
+      "Common mistakes"
+    ],
+    "homework": "Practice all three tenses",
+    "timestamp": "2025-09-10T00:00:00.419Z"
+  },
+  {
+    "id": "CCSF3-2025-09-10-1764165710551",
+    "class": "CCSF3",
+    "date": "2025-09-10",
+    "type": "Grammar",
+    "title": "Review: Present Continuous Tense",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Formation: am/is/are + verb-ing",
+      "Actions happening now vs temporary situations",
+      "Stative verbs that don't use continuous"
+    ],
+    "homework": "Exercises page 12-13",
+    "timestamp": "2025-09-10T00:00:00.903Z"
+  },
+  {
+    "id": "CCS1-2025-09-10-1764165710551",
+    "class": "CCS1",
+    "date": "2025-09-10",
+    "type": "Grammar",
+    "title": "Review: Present Continuous Tense",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Formation: am/is/are + verb-ing",
+      "Actions happening now vs temporary situations",
+      "Stative verbs that don't use continuous"
+    ],
+    "homework": "Exercises page 12-13",
+    "timestamp": "2025-09-10T00:00:00.584Z"
+  },
+  {
+    "id": "CCSF1-2025-09-10-1764165710551",
+    "class": "CCSF1",
+    "date": "2025-09-10",
+    "type": "Grammar",
+    "title": "Review: Present Continuous Tense",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Formation: am/is/are + verb-ing",
+      "Actions happening now vs temporary situations",
+      "Stative verbs that don't use continuous"
+    ],
+    "homework": "Exercises page 12-13",
+    "timestamp": "2025-09-10T00:00:00.908Z"
+  },
+  {
+    "id": "CCSF2-2025-09-11-1764165710551",
+    "class": "CCSF2",
+    "date": "2025-09-11",
+    "type": "Grammar",
+    "title": "Review: Simple Past Tense",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Regular and irregular verbs",
+      "Time expressions for past",
+      "Questions and negatives in past"
+    ],
+    "homework": "Complete past tense worksheet",
+    "timestamp": "2025-09-11T00:00:00.914Z"
+  },
+  {
+    "id": "2BAC SP2-2025-09-11-1764165710551",
+    "class": "2BAC SP2",
+    "date": "2025-09-11",
+    "type": "Grammar",
+    "title": "Review: Three Main Tenses",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Present simple, continuous, and past",
+      "Form and usage differences",
+      "Common mistakes"
+    ],
+    "homework": "Practice all three tenses",
+    "timestamp": "2025-09-11T00:00:00.754Z"
+  },
+  {
+    "id": "2BAC SP1-2025-09-11-1764165710552",
+    "class": "2BAC SP1",
+    "date": "2025-09-11",
+    "type": "Vocabulary",
+    "title": "Unit 1: The Gift of Youth - Vocabulary",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Youth-related terms",
+      "Age and generation words",
+      "Modern youth culture"
+    ],
+    "homework": "Learn vocabulary list 1",
+    "timestamp": "2025-09-11T00:00:00.312Z"
+  },
+  {
+    "id": "CCS2-2025-09-11-1764165710552",
+    "class": "CCS2",
+    "date": "2025-09-11",
+    "type": "Grammar",
+    "title": "Review: Present Continuous Tense",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Formation: am/is/are + verb-ing",
+      "Actions happening now vs temporary situations",
+      "Stative verbs that don't use continuous"
+    ],
+    "homework": "Exercises page 12-13",
+    "timestamp": "2025-09-11T00:00:00.473Z"
+  },
+  {
+    "id": "CCS2-2025-09-12-1764165710552",
+    "class": "CCS2",
+    "date": "2025-09-12",
+    "type": "Grammar",
+    "title": "Review: Simple Past Tense",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Regular and irregular verbs",
+      "Time expressions for past",
+      "Questions and negatives in past"
+    ],
+    "homework": "Complete past tense worksheet",
+    "timestamp": "2025-09-12T00:00:00.443Z"
+  },
+  {
+    "id": "2BAC SP2-2025-09-12-1764165710552",
+    "class": "2BAC SP2",
+    "date": "2025-09-12",
+    "type": "Vocabulary",
+    "title": "Unit 1: The Gift of Youth - Vocabulary",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Youth-related terms",
+      "Age and generation words",
+      "Modern youth culture"
+    ],
+    "homework": "Learn vocabulary list 1",
+    "timestamp": "2025-09-12T00:00:00.528Z"
+  },
+  {
+    "id": "2BAC SP1-2025-09-12-1764165710552",
+    "class": "2BAC SP1",
+    "date": "2025-09-12",
+    "type": "Reading",
+    "title": "Unit 1: Generation Z Characteristics",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Reading strategies",
+      "Understanding Generation Z",
+      "Text analysis"
+    ],
+    "homework": "Read pages 22-24",
+    "timestamp": "2025-09-12T00:00:00.237Z"
+  },
+  {
+    "id": "CCS1-2025-09-12-1764165710552",
+    "class": "CCS1",
+    "date": "2025-09-12",
+    "type": "Grammar",
+    "title": "Review: Simple Past Tense",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Regular and irregular verbs",
+      "Time expressions for past",
+      "Questions and negatives in past"
+    ],
+    "homework": "Complete past tense worksheet",
+    "timestamp": "2025-09-12T00:00:00.828Z"
+  },
+  {
+    "id": "CCSF1-2025-09-13-1764165710552",
+    "class": "CCSF1",
+    "date": "2025-09-13",
+    "type": "Grammar",
+    "title": "Review: Simple Past Tense",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Regular and irregular verbs",
+      "Time expressions for past",
+      "Questions and negatives in past"
+    ],
+    "homework": "Complete past tense worksheet",
+    "timestamp": "2025-09-13T00:00:00.846Z"
+  },
+  {
+    "id": "2BAC SP2-2025-09-13-1764165710552",
+    "class": "2BAC SP2",
+    "date": "2025-09-13",
+    "type": "Reading",
+    "title": "Unit 1: Generation Z Characteristics",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Reading strategies",
+      "Understanding Generation Z",
+      "Text analysis"
+    ],
+    "homework": "Read pages 22-24",
+    "timestamp": "2025-09-13T00:00:00.608Z"
+  },
+  {
+    "id": "CCSF3-2025-09-13-1764165710552",
+    "class": "CCSF3",
+    "date": "2025-09-13",
+    "type": "Grammar",
+    "title": "Review: Simple Past Tense",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Regular and irregular verbs",
+      "Time expressions for past",
+      "Questions and negatives in past"
+    ],
+    "homework": "Complete past tense worksheet",
+    "timestamp": "2025-09-13T00:00:00.996Z"
+  },
+  {
+    "id": "CCS1-2025-09-15-1764165710552",
+    "class": "CCS1",
+    "date": "2025-09-15",
+    "type": "Vocabulary",
+    "title": "Unit 1: Personal Relations - Vocabulary",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Family relationships terms",
+      "Personality adjectives",
+      "Relationship expressions"
+    ],
+    "homework": "Learn vocabulary list 1",
+    "timestamp": "2025-09-15T00:00:00.388Z"
+  },
+  {
+    "id": "CCS2-2025-09-15-1764165710552",
+    "class": "CCS2",
+    "date": "2025-09-15",
+    "type": "Vocabulary",
+    "title": "Unit 1: Personal Relations - Vocabulary",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Family relationships terms",
+      "Personality adjectives",
+      "Relationship expressions"
+    ],
+    "homework": "Learn vocabulary list 1",
+    "timestamp": "2025-09-15T00:00:00.300Z"
+  },
+  {
+    "id": "CCSF3-2025-09-15-1764165710552",
+    "class": "CCSF3",
+    "date": "2025-09-15",
+    "type": "Vocabulary",
+    "title": "Unit 1: Personal Relations - Vocabulary",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Family relationships terms",
+      "Personality adjectives",
+      "Relationship expressions"
+    ],
+    "homework": "Learn vocabulary list 1",
+    "timestamp": "2025-09-15T00:00:00.648Z"
+  },
+  {
+    "id": "CCSF2-2025-09-15-1764165710552",
+    "class": "CCSF2",
+    "date": "2025-09-15",
+    "type": "Vocabulary",
+    "title": "Unit 1: Personal Relations - Vocabulary",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Family relationships terms",
+      "Personality adjectives",
+      "Relationship expressions"
+    ],
+    "homework": "Learn vocabulary list 1",
+    "timestamp": "2025-09-15T00:00:00.749Z"
+  },
+  {
+    "id": "CCSF1-2025-09-16-1764165710552",
+    "class": "CCSF1",
+    "date": "2025-09-16",
+    "type": "Vocabulary",
+    "title": "Unit 1: Personal Relations - Vocabulary",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Family relationships terms",
+      "Personality adjectives",
+      "Relationship expressions"
+    ],
+    "homework": "Learn vocabulary list 1",
+    "timestamp": "2025-09-16T00:00:00.045Z"
+  },
+  {
+    "id": "CCSF2-2025-09-16-1764165710552",
+    "class": "CCSF2",
+    "date": "2025-09-16",
+    "type": "Reading",
+    "title": "Unit 1: Personal Relations - Reading",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Reading comprehension strategies",
+      "Main ideas and details",
+      "Making inferences"
+    ],
+    "homework": "Read text page 18-19",
+    "timestamp": "2025-09-16T00:00:00.776Z"
+  },
+  {
+    "id": "2BAC SP1-2025-09-17-1764165710552",
+    "class": "2BAC SP1",
+    "date": "2025-09-17",
+    "type": "Grammar",
+    "title": "Unit 1: Word Formation - Prefixes",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Common prefixes (un-, re-, dis-)",
+      "Meaning changes",
+      "Building vocabulary"
+    ],
+    "homework": "Practice word formation",
+    "timestamp": "2025-09-17T00:00:00.738Z"
+  },
+  {
+    "id": "CCSF3-2025-09-17-1764165710552",
+    "class": "CCSF3",
+    "date": "2025-09-17",
+    "type": "Reading",
+    "title": "Unit 1: Personal Relations - Reading",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Reading comprehension strategies",
+      "Main ideas and details",
+      "Making inferences"
+    ],
+    "homework": "Read text page 18-19",
+    "timestamp": "2025-09-17T00:00:00.777Z"
+  },
+  {
+    "id": "CCS1-2025-09-17-1764165710552",
+    "class": "CCS1",
+    "date": "2025-09-17",
+    "type": "Reading",
+    "title": "Unit 1: Personal Relations - Reading",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Reading comprehension strategies",
+      "Main ideas and details",
+      "Making inferences"
+    ],
+    "homework": "Read text page 18-19",
+    "timestamp": "2025-09-17T00:00:00.472Z"
+  },
+  {
+    "id": "CCSF1-2025-09-17-1764165710552",
+    "class": "CCSF1",
+    "date": "2025-09-17",
+    "type": "Reading",
+    "title": "Unit 1: Personal Relations - Reading",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Reading comprehension strategies",
+      "Main ideas and details",
+      "Making inferences"
+    ],
+    "homework": "Read text page 18-19",
+    "timestamp": "2025-09-17T00:00:00.031Z"
+  },
+  {
+    "id": "CCSF2-2025-09-18-1764165710552",
+    "class": "CCSF2",
+    "date": "2025-09-18",
+    "type": "Grammar",
+    "title": "Unit 1: Describing People - Present Tenses",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Using present simple for permanent states",
+      "Present continuous for temporary actions",
+      "Describing appearance and character"
+    ],
+    "homework": "Describe family members",
+    "timestamp": "2025-09-18T00:00:00.050Z"
+  },
+  {
+    "id": "2BAC SP2-2025-09-18-1764165710552",
+    "class": "2BAC SP2",
+    "date": "2025-09-18",
+    "type": "Grammar",
+    "title": "Unit 1: Word Formation - Prefixes",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Common prefixes (un-, re-, dis-)",
+      "Meaning changes",
+      "Building vocabulary"
+    ],
+    "homework": "Practice word formation",
+    "timestamp": "2025-09-18T00:00:00.072Z"
+  },
+  {
+    "id": "2BAC SP1-2025-09-18-1764165710552",
+    "class": "2BAC SP1",
+    "date": "2025-09-18",
+    "type": "Grammar",
+    "title": "Unit 1: Word Formation - Suffixes",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Common suffixes (-tion, -ness, -ly)",
+      "Parts of speech",
+      "Practical application"
+    ],
+    "homework": "Complete exercises",
+    "timestamp": "2025-09-18T00:00:00.066Z"
+  },
+  {
+    "id": "CCS2-2025-09-18-1764165710552",
+    "class": "CCS2",
+    "date": "2025-09-18",
+    "type": "Reading",
+    "title": "Unit 1: Personal Relations - Reading",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Reading comprehension strategies",
+      "Main ideas and details",
+      "Making inferences"
+    ],
+    "homework": "Read text page 18-19",
+    "timestamp": "2025-09-18T00:00:00.208Z"
+  },
+  {
+    "id": "CCS2-2025-09-19-1764165710553",
+    "class": "CCS2",
+    "date": "2025-09-19",
+    "type": "Grammar",
+    "title": "Unit 1: Describing People - Present Tenses",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Using present simple for permanent states",
+      "Present continuous for temporary actions",
+      "Describing appearance and character"
+    ],
+    "homework": "Describe family members",
+    "timestamp": "2025-09-19T00:00:00.751Z"
+  },
+  {
+    "id": "2BAC SP2-2025-09-19-1764165710553",
+    "class": "2BAC SP2",
+    "date": "2025-09-19",
+    "type": "Grammar",
+    "title": "Unit 1: Word Formation - Suffixes",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Common suffixes (-tion, -ness, -ly)",
+      "Parts of speech",
+      "Practical application"
+    ],
+    "homework": "Complete exercises",
+    "timestamp": "2025-09-19T00:00:00.727Z"
+  },
+  {
+    "id": "2BAC SP1-2025-09-19-1764165710553",
+    "class": "2BAC SP1",
+    "date": "2025-09-19",
+    "type": "Grammar",
+    "title": "Unit 1: Gerunds and Infinitives (1)",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Verbs followed by gerunds",
+      "Verbs followed by infinitives",
+      "Basic patterns"
+    ],
+    "homework": "Practice page 30",
+    "timestamp": "2025-09-19T00:00:00.603Z"
+  },
+  {
+    "id": "CCS1-2025-09-19-1764165710553",
+    "class": "CCS1",
+    "date": "2025-09-19",
+    "type": "Grammar",
+    "title": "Unit 1: Describing People - Present Tenses",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Using present simple for permanent states",
+      "Present continuous for temporary actions",
+      "Describing appearance and character"
+    ],
+    "homework": "Describe family members",
+    "timestamp": "2025-09-19T00:00:00.047Z"
+  },
+  {
+    "id": "CCSF1-2025-09-20-1764165710553",
+    "class": "CCSF1",
+    "date": "2025-09-20",
+    "type": "Grammar",
+    "title": "Unit 1: Describing People - Present Tenses",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Using present simple for permanent states",
+      "Present continuous for temporary actions",
+      "Describing appearance and character"
+    ],
+    "homework": "Describe family members",
+    "timestamp": "2025-09-20T00:00:00.260Z"
+  },
+  {
+    "id": "2BAC SP2-2025-09-20-1764165710553",
+    "class": "2BAC SP2",
+    "date": "2025-09-20",
+    "type": "Grammar",
+    "title": "Unit 1: Gerunds and Infinitives (1)",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Verbs followed by gerunds",
+      "Verbs followed by infinitives",
+      "Basic patterns"
+    ],
+    "homework": "Practice page 30",
+    "timestamp": "2025-09-20T00:00:00.258Z"
+  },
+  {
+    "id": "CCSF3-2025-09-20-1764165710553",
+    "class": "CCSF3",
+    "date": "2025-09-20",
+    "type": "Grammar",
+    "title": "Unit 1: Describing People - Present Tenses",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Using present simple for permanent states",
+      "Present continuous for temporary actions",
+      "Describing appearance and character"
+    ],
+    "homework": "Describe family members",
+    "timestamp": "2025-09-20T00:00:00.243Z"
+  },
+  {
+    "id": "CCS1-2025-09-22-1764165710553",
+    "class": "CCS1",
+    "date": "2025-09-22",
+    "type": "Writing",
+    "title": "Unit 1: Describing a Friend",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Paragraph structure",
+      "Descriptive adjectives",
+      "Organizing ideas"
+    ],
+    "homework": "Write description draft",
+    "timestamp": "2025-09-22T00:00:00.308Z"
+  },
+  {
+    "id": "CCS2-2025-09-22-1764165710553",
+    "class": "CCS2",
+    "date": "2025-09-22",
+    "type": "Writing",
+    "title": "Unit 1: Describing a Friend",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Paragraph structure",
+      "Descriptive adjectives",
+      "Organizing ideas"
+    ],
+    "homework": "Write description draft",
+    "timestamp": "2025-09-22T00:00:00.010Z"
+  },
+  {
+    "id": "CCSF3-2025-09-22-1764165710553",
+    "class": "CCSF3",
+    "date": "2025-09-22",
+    "type": "Writing",
+    "title": "Unit 1: Describing a Friend",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Paragraph structure",
+      "Descriptive adjectives",
+      "Organizing ideas"
+    ],
+    "homework": "Write description draft",
+    "timestamp": "2025-09-22T00:00:00.956Z"
+  },
+  {
+    "id": "CCSF2-2025-09-22-1764165710553",
+    "class": "CCSF2",
+    "date": "2025-09-22",
+    "type": "Writing",
+    "title": "Unit 1: Describing a Friend",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Paragraph structure",
+      "Descriptive adjectives",
+      "Organizing ideas"
+    ],
+    "homework": "Write description draft",
+    "timestamp": "2025-09-22T00:00:00.221Z"
+  },
+  {
+    "id": "CCSF1-2025-09-23-1764165710553",
+    "class": "CCSF1",
+    "date": "2025-09-23",
+    "type": "Writing",
+    "title": "Unit 1: Describing a Friend",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Paragraph structure",
+      "Descriptive adjectives",
+      "Organizing ideas"
+    ],
+    "homework": "Write description draft",
+    "timestamp": "2025-09-23T00:00:00.513Z"
+  },
+  {
+    "id": "CCSF2-2025-09-23-1764165710553",
+    "class": "CCSF2",
+    "date": "2025-09-23",
+    "type": "Communication",
+    "title": "Unit 1: Making Introductions",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Formal vs informal introductions",
+      "Cultural differences",
+      "Body language"
+    ],
+    "homework": "Prepare self-introduction",
+    "timestamp": "2025-09-23T00:00:00.090Z"
+  },
+  {
+    "id": "2BAC SP1-2025-09-24-1764165710553",
+    "class": "2BAC SP1",
+    "date": "2025-09-24",
+    "type": "Grammar",
+    "title": "Unit 1: Gerunds and Infinitives (2)",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Verbs with both forms",
+      "Meaning differences",
+      "Advanced usage"
+    ],
+    "homework": "Practice page 31",
+    "timestamp": "2025-09-24T00:00:00.988Z"
+  },
+  {
+    "id": "CCSF3-2025-09-24-1764165710553",
+    "class": "CCSF3",
+    "date": "2025-09-24",
+    "type": "Communication",
+    "title": "Unit 1: Making Introductions",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Formal vs informal introductions",
+      "Cultural differences",
+      "Body language"
+    ],
+    "homework": "Prepare self-introduction",
+    "timestamp": "2025-09-24T00:00:00.125Z"
+  },
+  {
+    "id": "CCS1-2025-09-24-1764165710553",
+    "class": "CCS1",
+    "date": "2025-09-24",
+    "type": "Communication",
+    "title": "Unit 1: Making Introductions",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Formal vs informal introductions",
+      "Cultural differences",
+      "Body language"
+    ],
+    "homework": "Prepare self-introduction",
+    "timestamp": "2025-09-24T00:00:00.188Z"
+  },
+  {
+    "id": "CCSF1-2025-09-24-1764165710553",
+    "class": "CCSF1",
+    "date": "2025-09-24",
+    "type": "Communication",
+    "title": "Unit 1: Making Introductions",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Formal vs informal introductions",
+      "Cultural differences",
+      "Body language"
+    ],
+    "homework": "Prepare self-introduction",
+    "timestamp": "2025-09-24T00:00:00.249Z"
+  },
+  {
+    "id": "CCSF2-2025-09-25-1764165710553",
+    "class": "CCSF2",
+    "date": "2025-09-25",
+    "type": "Grammar",
+    "title": "Unit 1: Possessive Forms",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Possessive adjectives and pronouns",
+      "Possessive 's and s'",
+      "Expressing ownership"
+    ],
+    "homework": "Practice exercises page 25",
+    "timestamp": "2025-09-25T00:00:00.165Z"
+  },
+  {
+    "id": "2BAC SP2-2025-09-25-1764165710553",
+    "class": "2BAC SP2",
+    "date": "2025-09-25",
+    "type": "Grammar",
+    "title": "Unit 1: Gerunds and Infinitives (2)",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Verbs with both forms",
+      "Meaning differences",
+      "Advanced usage"
+    ],
+    "homework": "Practice page 31",
+    "timestamp": "2025-09-25T00:00:00.500Z"
+  },
+  {
+    "id": "2BAC SP1-2025-09-25-1764165710553",
+    "class": "2BAC SP1",
+    "date": "2025-09-25",
+    "type": "Grammar",
+    "title": "Unit 1: Gerunds and Infinitives (3)",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "After prepositions",
+      "As subjects and objects",
+      "Common expressions"
+    ],
+    "homework": "Complete all exercises",
+    "timestamp": "2025-09-25T00:00:00.474Z"
+  },
+  {
+    "id": "CCS2-2025-09-25-1764165710553",
+    "class": "CCS2",
+    "date": "2025-09-25",
+    "type": "Communication",
+    "title": "Unit 1: Making Introductions",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Formal vs informal introductions",
+      "Cultural differences",
+      "Body language"
+    ],
+    "homework": "Prepare self-introduction",
+    "timestamp": "2025-09-25T00:00:00.662Z"
+  },
+  {
+    "id": "CCS2-2025-09-26-1764165710554",
+    "class": "CCS2",
+    "date": "2025-09-26",
+    "type": "Grammar",
+    "title": "Unit 1: Possessive Forms",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Possessive adjectives and pronouns",
+      "Possessive 's and s'",
+      "Expressing ownership"
+    ],
+    "homework": "Practice exercises page 25",
+    "timestamp": "2025-09-26T00:00:00.616Z"
+  },
+  {
+    "id": "2BAC SP2-2025-09-26-1764165710554",
+    "class": "2BAC SP2",
+    "date": "2025-09-26",
+    "type": "Grammar",
+    "title": "Unit 1: Gerunds and Infinitives (3)",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "After prepositions",
+      "As subjects and objects",
+      "Common expressions"
+    ],
+    "homework": "Complete all exercises",
+    "timestamp": "2025-09-26T00:00:00.923Z"
+  },
+  {
+    "id": "2BAC SP1-2025-09-26-1764165710554",
+    "class": "2BAC SP1",
+    "date": "2025-09-26",
+    "type": "Writing",
+    "title": "Unit 1: Descriptive Writing (1)",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Descriptive techniques",
+      "Sensory details",
+      "Planning description"
+    ],
+    "homework": "Write outline",
+    "timestamp": "2025-09-26T00:00:00.297Z"
+  },
+  {
+    "id": "CCS1-2025-09-26-1764165710554",
+    "class": "CCS1",
+    "date": "2025-09-26",
+    "type": "Grammar",
+    "title": "Unit 1: Possessive Forms",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Possessive adjectives and pronouns",
+      "Possessive 's and s'",
+      "Expressing ownership"
+    ],
+    "homework": "Practice exercises page 25",
+    "timestamp": "2025-09-26T00:00:00.459Z"
+  },
+  {
+    "id": "CCSF1-2025-09-27-1764165710554",
+    "class": "CCSF1",
+    "date": "2025-09-27",
+    "type": "Grammar",
+    "title": "Unit 1: Possessive Forms",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Possessive adjectives and pronouns",
+      "Possessive 's and s'",
+      "Expressing ownership"
+    ],
+    "homework": "Practice exercises page 25",
+    "timestamp": "2025-09-27T00:00:00.804Z"
+  },
+  {
+    "id": "2BAC SP2-2025-09-27-1764165710554",
+    "class": "2BAC SP2",
+    "date": "2025-09-27",
+    "type": "Writing",
+    "title": "Unit 1: Descriptive Writing (1)",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Descriptive techniques",
+      "Sensory details",
+      "Planning description"
+    ],
+    "homework": "Write outline",
+    "timestamp": "2025-09-27T00:00:00.326Z"
+  },
+  {
+    "id": "CCSF3-2025-09-27-1764165710554",
+    "class": "CCSF3",
+    "date": "2025-09-27",
+    "type": "Grammar",
+    "title": "Unit 1: Possessive Forms",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Possessive adjectives and pronouns",
+      "Possessive 's and s'",
+      "Expressing ownership"
+    ],
+    "homework": "Practice exercises page 25",
+    "timestamp": "2025-09-27T00:00:00.228Z"
+  },
+  {
+    "id": "CCS1-2025-09-29-1764165710554",
+    "class": "CCS1",
+    "date": "2025-09-29",
+    "type": "Speaking",
+    "title": "Unit 1: Talking About Relationships",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Asking about people",
+      "Describing relationships",
+      "Using appropriate language"
+    ],
+    "homework": "Prepare dialogue",
+    "timestamp": "2025-09-29T00:00:00.900Z"
+  },
+  {
+    "id": "CCS2-2025-09-29-1764165710554",
+    "class": "CCS2",
+    "date": "2025-09-29",
+    "type": "Speaking",
+    "title": "Unit 1: Talking About Relationships",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Asking about people",
+      "Describing relationships",
+      "Using appropriate language"
+    ],
+    "homework": "Prepare dialogue",
+    "timestamp": "2025-09-29T00:00:00.378Z"
+  },
+  {
+    "id": "CCSF3-2025-09-29-1764165710554",
+    "class": "CCSF3",
+    "date": "2025-09-29",
+    "type": "Speaking",
+    "title": "Unit 1: Talking About Relationships",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Asking about people",
+      "Describing relationships",
+      "Using appropriate language"
+    ],
+    "homework": "Prepare dialogue",
+    "timestamp": "2025-09-29T00:00:00.868Z"
+  },
+  {
+    "id": "CCSF2-2025-09-29-1764165710554",
+    "class": "CCSF2",
+    "date": "2025-09-29",
+    "type": "Speaking",
+    "title": "Unit 1: Talking About Relationships",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Asking about people",
+      "Describing relationships",
+      "Using appropriate language"
+    ],
+    "homework": "Prepare dialogue",
+    "timestamp": "2025-09-29T00:00:00.639Z"
+  },
+  {
+    "id": "CCSF1-2025-09-30-1764165710554",
+    "class": "CCSF1",
+    "date": "2025-09-30",
+    "type": "Speaking",
+    "title": "Unit 1: Talking About Relationships",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Asking about people",
+      "Describing relationships",
+      "Using appropriate language"
+    ],
+    "homework": "Prepare dialogue",
+    "timestamp": "2025-09-30T00:00:00.138Z"
+  },
+  {
+    "id": "CCSF2-2025-09-30-1764165710554",
+    "class": "CCSF2",
+    "date": "2025-09-30",
+    "type": "Review",
+    "title": "Unit 1 Review - Personal Relations",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Review vocabulary and grammar",
+      "Practice activities",
+      "Q&A session"
+    ],
+    "homework": "Study for test",
+    "timestamp": "2025-09-30T00:00:00.416Z"
+  },
+  {
+    "id": "2BAC SP1-2025-10-01-1764165710554",
+    "class": "2BAC SP1",
+    "date": "2025-10-01",
+    "type": "Writing",
+    "title": "Unit 1: Descriptive Writing (2)",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Body paragraphs",
+      "Using examples",
+      "Vivid language"
+    ],
+    "homework": "Write first draft",
+    "timestamp": "2025-10-01T00:00:00.205Z"
+  },
+  {
+    "id": "CCSF3-2025-10-01-1764165710554",
+    "class": "CCSF3",
+    "date": "2025-10-01",
+    "type": "Review",
+    "title": "Unit 1 Review - Personal Relations",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Review vocabulary and grammar",
+      "Practice activities",
+      "Q&A session"
+    ],
+    "homework": "Study for test",
+    "timestamp": "2025-10-01T00:00:00.681Z"
+  },
+  {
+    "id": "CCS1-2025-10-01-1764165710554",
+    "class": "CCS1",
+    "date": "2025-10-01",
+    "type": "Review",
+    "title": "Unit 1 Review - Personal Relations",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Review vocabulary and grammar",
+      "Practice activities",
+      "Q&A session"
+    ],
+    "homework": "Study for test",
+    "timestamp": "2025-10-01T00:00:00.197Z"
+  },
+  {
+    "id": "CCSF1-2025-10-01-1764165710554",
+    "class": "CCSF1",
+    "date": "2025-10-01",
+    "type": "Review",
+    "title": "Unit 1 Review - Personal Relations",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Review vocabulary and grammar",
+      "Practice activities",
+      "Q&A session"
+    ],
+    "homework": "Study for test",
+    "timestamp": "2025-10-01T00:00:00.204Z"
+  },
+  {
+    "id": "CCSF2-2025-10-02-1764165710555",
+    "class": "CCSF2",
+    "date": "2025-10-02",
+    "type": "Assessment",
+    "title": "Test Preview - Unit 1",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Review test format",
+      "Sample questions",
+      "Test-taking strategies"
+    ],
+    "homework": "Final review",
+    "timestamp": "2025-10-02T00:00:00.995Z"
+  },
+  {
+    "id": "2BAC SP2-2025-10-02-1764165710555",
+    "class": "2BAC SP2",
+    "date": "2025-10-02",
+    "type": "Writing",
+    "title": "Unit 1: Descriptive Writing (2)",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Body paragraphs",
+      "Using examples",
+      "Vivid language"
+    ],
+    "homework": "Write first draft",
+    "timestamp": "2025-10-02T00:00:00.492Z"
+  },
+  {
+    "id": "2BAC SP1-2025-10-02-1764165710555",
+    "class": "2BAC SP1",
+    "date": "2025-10-02",
+    "type": "Writing",
+    "title": "Unit 1: Descriptive Writing (3)",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Introduction and conclusion",
+      "Coherence and cohesion",
+      "Editing techniques"
+    ],
+    "homework": "Revise draft",
+    "timestamp": "2025-10-02T00:00:00.036Z"
+  },
+  {
+    "id": "CCS2-2025-10-02-1764165710555",
+    "class": "CCS2",
+    "date": "2025-10-02",
+    "type": "Review",
+    "title": "Unit 1 Review - Personal Relations",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Review vocabulary and grammar",
+      "Practice activities",
+      "Q&A session"
+    ],
+    "homework": "Study for test",
+    "timestamp": "2025-10-02T00:00:00.123Z"
+  },
+  {
+    "id": "CCS2-2025-10-03-1764165710555",
+    "class": "CCS2",
+    "date": "2025-10-03",
+    "type": "Assessment",
+    "title": "Test Preview - Unit 1",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Review test format",
+      "Sample questions",
+      "Test-taking strategies"
+    ],
+    "homework": "Final review",
+    "timestamp": "2025-10-03T00:00:00.117Z"
+  },
+  {
+    "id": "2BAC SP2-2025-10-03-1764165710555",
+    "class": "2BAC SP2",
+    "date": "2025-10-03",
+    "type": "Writing",
+    "title": "Unit 1: Descriptive Writing (3)",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Introduction and conclusion",
+      "Coherence and cohesion",
+      "Editing techniques"
+    ],
+    "homework": "Revise draft",
+    "timestamp": "2025-10-03T00:00:00.505Z"
+  },
+  {
+    "id": "2BAC SP1-2025-10-03-1764165710555",
+    "class": "2BAC SP1",
+    "date": "2025-10-03",
+    "type": "Writing",
+    "title": "Unit 1: Descriptive Writing (4)",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Peer review",
+      "Final revisions",
+      "Presentation"
+    ],
+    "homework": "Complete final version",
+    "timestamp": "2025-10-03T00:00:00.135Z"
+  },
+  {
+    "id": "CCS1-2025-10-03-1764165710555",
+    "class": "CCS1",
+    "date": "2025-10-03",
+    "type": "Assessment",
+    "title": "Test Preview - Unit 1",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Review test format",
+      "Sample questions",
+      "Test-taking strategies"
+    ],
+    "homework": "Final review",
+    "timestamp": "2025-10-03T00:00:00.090Z"
+  },
+  {
+    "id": "CCSF1-2025-10-04-1764165710555",
+    "class": "CCSF1",
+    "date": "2025-10-04",
+    "type": "Assessment",
+    "title": "Test Preview - Unit 1",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Review test format",
+      "Sample questions",
+      "Test-taking strategies"
+    ],
+    "homework": "Final review",
+    "timestamp": "2025-10-04T00:00:00.138Z"
+  },
+  {
+    "id": "2BAC SP2-2025-10-04-1764165710555",
+    "class": "2BAC SP2",
+    "date": "2025-10-04",
+    "type": "Writing",
+    "title": "Unit 1: Descriptive Writing (4)",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Peer review",
+      "Final revisions",
+      "Presentation"
+    ],
+    "homework": "Complete final version",
+    "timestamp": "2025-10-04T00:00:00.008Z"
+  },
+  {
+    "id": "CCSF3-2025-10-04-1764165710555",
+    "class": "CCSF3",
+    "date": "2025-10-04",
+    "type": "Assessment",
+    "title": "Test Preview - Unit 1",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Review test format",
+      "Sample questions",
+      "Test-taking strategies"
+    ],
+    "homework": "Final review",
+    "timestamp": "2025-10-04T00:00:00.736Z"
+  },
+  {
+    "id": "CCS1-2025-10-06-1764165710555",
+    "class": "CCS1",
+    "date": "2025-10-06",
+    "type": "Assessment",
+    "title": "Test 1 - Personal Relations",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Written test",
+      "Grammar and vocabulary",
+      "Reading comprehension"
+    ],
+    "homework": "None",
+    "timestamp": "2025-10-06T00:00:00.475Z"
+  },
+  {
+    "id": "CCS2-2025-10-06-1764165710555",
+    "class": "CCS2",
+    "date": "2025-10-06",
+    "type": "Assessment",
+    "title": "Test 1 - Personal Relations",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Written test",
+      "Grammar and vocabulary",
+      "Reading comprehension"
+    ],
+    "homework": "None",
+    "timestamp": "2025-10-06T00:00:00.635Z"
+  },
+  {
+    "id": "CCSF3-2025-10-06-1764165710555",
+    "class": "CCSF3",
+    "date": "2025-10-06",
+    "type": "Assessment",
+    "title": "Test 1 - Personal Relations",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Written test",
+      "Grammar and vocabulary",
+      "Reading comprehension"
+    ],
+    "homework": "None",
+    "timestamp": "2025-10-06T00:00:00.691Z"
+  },
+  {
+    "id": "CCSF2-2025-10-06-1764165710555",
+    "class": "CCSF2",
+    "date": "2025-10-06",
+    "type": "Assessment",
+    "title": "Test 1 - Personal Relations",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Written test",
+      "Grammar and vocabulary",
+      "Reading comprehension"
+    ],
+    "homework": "None",
+    "timestamp": "2025-10-06T00:00:00.121Z"
+  },
+  {
+    "id": "CCSF1-2025-10-07-1764165710556",
+    "class": "CCSF1",
+    "date": "2025-10-07",
+    "type": "Assessment",
+    "title": "Test 1 - Personal Relations",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Written test",
+      "Grammar and vocabulary",
+      "Reading comprehension"
+    ],
+    "homework": "None",
+    "timestamp": "2025-10-07T00:00:00.347Z"
+  },
+  {
+    "id": "CCSF2-2025-10-07-1764165710556",
+    "class": "CCSF2",
+    "date": "2025-10-07",
+    "type": "Review",
+    "title": "Test Correction - Unit 1",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Review answers",
+      "Common mistakes",
+      "Learning from errors"
+    ],
+    "homework": "Review corrections",
+    "timestamp": "2025-10-07T00:00:00.427Z"
+  },
+  {
+    "id": "2BAC SP1-2025-10-08-1764165710556",
+    "class": "2BAC SP1",
+    "date": "2025-10-08",
+    "type": "Writing",
+    "title": "Unit 1: Descriptive Writing (5)",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Publishing work",
+      "Self-reflection",
+      "Improvement planning"
+    ],
+    "homework": "Reflect on writing",
+    "timestamp": "2025-10-08T00:00:00.622Z"
+  },
+  {
+    "id": "CCSF3-2025-10-08-1764165710556",
+    "class": "CCSF3",
+    "date": "2025-10-08",
+    "type": "Review",
+    "title": "Test Correction - Unit 1",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Review answers",
+      "Common mistakes",
+      "Learning from errors"
+    ],
+    "homework": "Review corrections",
+    "timestamp": "2025-10-08T00:00:00.539Z"
+  },
+  {
+    "id": "CCS1-2025-10-08-1764165710556",
+    "class": "CCS1",
+    "date": "2025-10-08",
+    "type": "Review",
+    "title": "Test Correction - Unit 1",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Review answers",
+      "Common mistakes",
+      "Learning from errors"
+    ],
+    "homework": "Review corrections",
+    "timestamp": "2025-10-08T00:00:00.647Z"
+  },
+  {
+    "id": "CCSF1-2025-10-08-1764165710556",
+    "class": "CCSF1",
+    "date": "2025-10-08",
+    "type": "Review",
+    "title": "Test Correction - Unit 1",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Review answers",
+      "Common mistakes",
+      "Learning from errors"
+    ],
+    "homework": "Review corrections",
+    "timestamp": "2025-10-08T00:00:00.386Z"
+  },
+  {
+    "id": "CCSF2-2025-10-09-1764165710556",
+    "class": "CCSF2",
+    "date": "2025-10-09",
+    "type": "Vocabulary",
+    "title": "Unit 2: Education - Vocabulary",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "School subjects and facilities",
+      "Educational terms",
+      "Study skills vocabulary"
+    ],
+    "homework": "Learn vocabulary list 2",
+    "timestamp": "2025-10-09T00:00:00.771Z"
+  },
+  {
+    "id": "2BAC SP2-2025-10-09-1764165710556",
+    "class": "2BAC SP2",
+    "date": "2025-10-09",
+    "type": "Writing",
+    "title": "Unit 1: Descriptive Writing (5)",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Publishing work",
+      "Self-reflection",
+      "Improvement planning"
+    ],
+    "homework": "Reflect on writing",
+    "timestamp": "2025-10-09T00:00:00.030Z"
+  },
+  {
+    "id": "2BAC SP1-2025-10-09-1764165710556",
+    "class": "2BAC SP1",
+    "date": "2025-10-09",
+    "type": "Review",
+    "title": "Unit 1 Review - Gift of Youth",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Review vocabulary",
+      "Review grammar",
+      "Practice activities"
+    ],
+    "homework": "Study for test",
+    "timestamp": "2025-10-09T00:00:00.256Z"
+  },
+  {
+    "id": "CCS2-2025-10-09-1764165710556",
+    "class": "CCS2",
+    "date": "2025-10-09",
+    "type": "Review",
+    "title": "Test Correction - Unit 1",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Review answers",
+      "Common mistakes",
+      "Learning from errors"
+    ],
+    "homework": "Review corrections",
+    "timestamp": "2025-10-09T00:00:00.973Z"
+  },
+  {
+    "id": "CCS2-2025-10-10-1764165710557",
+    "class": "CCS2",
+    "date": "2025-10-10",
+    "type": "Vocabulary",
+    "title": "Unit 2: Education - Vocabulary",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "School subjects and facilities",
+      "Educational terms",
+      "Study skills vocabulary"
+    ],
+    "homework": "Learn vocabulary list 2",
+    "timestamp": "2025-10-10T00:00:00.160Z"
+  },
+  {
+    "id": "2BAC SP2-2025-10-10-1764165710557",
+    "class": "2BAC SP2",
+    "date": "2025-10-10",
+    "type": "Review",
+    "title": "Unit 1 Review - Gift of Youth",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Review vocabulary",
+      "Review grammar",
+      "Practice activities"
+    ],
+    "homework": "Study for test",
+    "timestamp": "2025-10-10T00:00:00.944Z"
+  },
+  {
+    "id": "2BAC SP1-2025-10-10-1764165710557",
+    "class": "2BAC SP1",
+    "date": "2025-10-10",
+    "type": "Assessment",
+    "title": "Test Preview - Unit 1",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Test format",
+      "Sample questions",
+      "Preparation strategies"
+    ],
+    "homework": "Final review",
+    "timestamp": "2025-10-10T00:00:00.469Z"
+  },
+  {
+    "id": "CCS1-2025-10-10-1764165710557",
+    "class": "CCS1",
+    "date": "2025-10-10",
+    "type": "Vocabulary",
+    "title": "Unit 2: Education - Vocabulary",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "School subjects and facilities",
+      "Educational terms",
+      "Study skills vocabulary"
+    ],
+    "homework": "Learn vocabulary list 2",
+    "timestamp": "2025-10-10T00:00:00.971Z"
+  },
+  {
+    "id": "CCSF1-2025-10-11-1764165710557",
+    "class": "CCSF1",
+    "date": "2025-10-11",
+    "type": "Vocabulary",
+    "title": "Unit 2: Education - Vocabulary",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "School subjects and facilities",
+      "Educational terms",
+      "Study skills vocabulary"
+    ],
+    "homework": "Learn vocabulary list 2",
+    "timestamp": "2025-10-11T00:00:00.731Z"
+  },
+  {
+    "id": "2BAC SP2-2025-10-11-1764165710557",
+    "class": "2BAC SP2",
+    "date": "2025-10-11",
+    "type": "Assessment",
+    "title": "Test Preview - Unit 1",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Test format",
+      "Sample questions",
+      "Preparation strategies"
+    ],
+    "homework": "Final review",
+    "timestamp": "2025-10-11T00:00:00.377Z"
+  },
+  {
+    "id": "CCSF3-2025-10-11-1764165710557",
+    "class": "CCSF3",
+    "date": "2025-10-11",
+    "type": "Vocabulary",
+    "title": "Unit 2: Education - Vocabulary",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "School subjects and facilities",
+      "Educational terms",
+      "Study skills vocabulary"
+    ],
+    "homework": "Learn vocabulary list 2",
+    "timestamp": "2025-10-11T00:00:00.733Z"
+  },
+  {
+    "id": "CCS1-2025-10-13-1764165710557",
+    "class": "CCS1",
+    "date": "2025-10-13",
+    "type": "Reading",
+    "title": "Unit 2: Education System",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Reading about education",
+      "Comparing systems",
+      "Critical thinking"
+    ],
+    "homework": "Read text page 32-33",
+    "timestamp": "2025-10-13T00:00:00.024Z"
+  },
+  {
+    "id": "CCS2-2025-10-13-1764165710557",
+    "class": "CCS2",
+    "date": "2025-10-13",
+    "type": "Reading",
+    "title": "Unit 2: Education System",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Reading about education",
+      "Comparing systems",
+      "Critical thinking"
+    ],
+    "homework": "Read text page 32-33",
+    "timestamp": "2025-10-13T00:00:00.110Z"
+  },
+  {
+    "id": "CCSF3-2025-10-13-1764165710557",
+    "class": "CCSF3",
+    "date": "2025-10-13",
+    "type": "Reading",
+    "title": "Unit 2: Education System",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Reading about education",
+      "Comparing systems",
+      "Critical thinking"
+    ],
+    "homework": "Read text page 32-33",
+    "timestamp": "2025-10-13T00:00:00.529Z"
+  },
+  {
+    "id": "CCSF2-2025-10-13-1764165710557",
+    "class": "CCSF2",
+    "date": "2025-10-13",
+    "type": "Reading",
+    "title": "Unit 2: Education System",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Reading about education",
+      "Comparing systems",
+      "Critical thinking"
+    ],
+    "homework": "Read text page 32-33",
+    "timestamp": "2025-10-13T00:00:00.464Z"
+  },
+  {
+    "id": "CCSF1-2025-10-14-1764165710557",
+    "class": "CCSF1",
+    "date": "2025-10-14",
+    "type": "Reading",
+    "title": "Unit 2: Education System",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Reading about education",
+      "Comparing systems",
+      "Critical thinking"
+    ],
+    "homework": "Read text page 32-33",
+    "timestamp": "2025-10-14T00:00:00.065Z"
+  },
+  {
+    "id": "CCSF2-2025-10-14-1764165710557",
+    "class": "CCSF2",
+    "date": "2025-10-14",
+    "type": "Grammar",
+    "title": "Unit 2: Adverbs of Frequency",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Position in sentence",
+      "Common frequency adverbs",
+      "Questions with frequency"
+    ],
+    "homework": "Practice exercises",
+    "timestamp": "2025-10-14T00:00:00.271Z"
+  },
+  {
+    "id": "2BAC SP1-2025-10-15-1764165710558",
+    "class": "2BAC SP1",
+    "date": "2025-10-15",
+    "type": "Assessment",
+    "title": "Test 1 - Gift of Youth",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Written test",
+      "All unit content",
+      "Writing component"
+    ],
+    "homework": "None",
+    "timestamp": "2025-10-15T00:00:00.726Z"
+  },
+  {
+    "id": "CCSF3-2025-10-15-1764165710558",
+    "class": "CCSF3",
+    "date": "2025-10-15",
+    "type": "Grammar",
+    "title": "Unit 2: Adverbs of Frequency",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Position in sentence",
+      "Common frequency adverbs",
+      "Questions with frequency"
+    ],
+    "homework": "Practice exercises",
+    "timestamp": "2025-10-15T00:00:00.853Z"
+  },
+  {
+    "id": "CCS1-2025-10-15-1764165710558",
+    "class": "CCS1",
+    "date": "2025-10-15",
+    "type": "Grammar",
+    "title": "Unit 2: Adverbs of Frequency",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Position in sentence",
+      "Common frequency adverbs",
+      "Questions with frequency"
+    ],
+    "homework": "Practice exercises",
+    "timestamp": "2025-10-15T00:00:00.467Z"
+  },
+  {
+    "id": "CCSF1-2025-10-15-1764165710558",
+    "class": "CCSF1",
+    "date": "2025-10-15",
+    "type": "Grammar",
+    "title": "Unit 2: Adverbs of Frequency",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Position in sentence",
+      "Common frequency adverbs",
+      "Questions with frequency"
+    ],
+    "homework": "Practice exercises",
+    "timestamp": "2025-10-15T00:00:00.206Z"
+  },
+  {
+    "id": "CCSF2-2025-10-16-1764165710558",
+    "class": "CCSF2",
+    "date": "2025-10-16",
+    "type": "Grammar",
+    "title": "Unit 2: Present Simple for Routines",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Daily schedules",
+      "School routines",
+      "Time expressions"
+    ],
+    "homework": "Write your daily routine",
+    "timestamp": "2025-10-16T00:00:00.517Z"
+  },
+  {
+    "id": "2BAC SP2-2025-10-16-1764165710558",
+    "class": "2BAC SP2",
+    "date": "2025-10-16",
+    "type": "Assessment",
+    "title": "Test 1 - Gift of Youth",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Written test",
+      "All unit content",
+      "Writing component"
+    ],
+    "homework": "None",
+    "timestamp": "2025-10-16T00:00:00.974Z"
+  },
+  {
+    "id": "2BAC SP1-2025-10-16-1764165710558",
+    "class": "2BAC SP1",
+    "date": "2025-10-16",
+    "type": "Review",
+    "title": "Test Correction - Unit 1",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Review answers",
+      "Common errors",
+      "Learning points"
+    ],
+    "homework": "Review corrections",
+    "timestamp": "2025-10-16T00:00:00.011Z"
+  },
+  {
+    "id": "CCS2-2025-10-16-1764165710558",
+    "class": "CCS2",
+    "date": "2025-10-16",
+    "type": "Grammar",
+    "title": "Unit 2: Adverbs of Frequency",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Position in sentence",
+      "Common frequency adverbs",
+      "Questions with frequency"
+    ],
+    "homework": "Practice exercises",
+    "timestamp": "2025-10-16T00:00:00.872Z"
+  },
+  {
+    "id": "CCS2-2025-10-17-1764165710558",
+    "class": "CCS2",
+    "date": "2025-10-17",
+    "type": "Grammar",
+    "title": "Unit 2: Present Simple for Routines",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Daily schedules",
+      "School routines",
+      "Time expressions"
+    ],
+    "homework": "Write your daily routine",
+    "timestamp": "2025-10-17T00:00:00.190Z"
+  },
+  {
+    "id": "2BAC SP2-2025-10-17-1764165710558",
+    "class": "2BAC SP2",
+    "date": "2025-10-17",
+    "type": "Review",
+    "title": "Test Correction - Unit 1",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Review answers",
+      "Common errors",
+      "Learning points"
+    ],
+    "homework": "Review corrections",
+    "timestamp": "2025-10-17T00:00:00.370Z"
+  },
+  {
+    "id": "2BAC SP1-2025-10-17-1764165710558",
+    "class": "2BAC SP1",
+    "date": "2025-10-17",
+    "type": "Vocabulary",
+    "title": "Unit 2: Humour - Vocabulary",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Types of humour",
+      "Comedy terms",
+      "Cultural humour"
+    ],
+    "homework": "Learn vocabulary list 2",
+    "timestamp": "2025-10-17T00:00:00.710Z"
+  },
+  {
+    "id": "CCS1-2025-10-17-1764165710558",
+    "class": "CCS1",
+    "date": "2025-10-17",
+    "type": "Grammar",
+    "title": "Unit 2: Present Simple for Routines",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Daily schedules",
+      "School routines",
+      "Time expressions"
+    ],
+    "homework": "Write your daily routine",
+    "timestamp": "2025-10-17T00:00:00.337Z"
+  },
+  {
+    "id": "CCSF1-2025-10-18-1764165710558",
+    "class": "CCSF1",
+    "date": "2025-10-18",
+    "type": "Grammar",
+    "title": "Unit 2: Present Simple for Routines",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Daily schedules",
+      "School routines",
+      "Time expressions"
+    ],
+    "homework": "Write your daily routine",
+    "timestamp": "2025-10-18T00:00:00.652Z"
+  },
+  {
+    "id": "2BAC SP2-2025-10-18-1764165710558",
+    "class": "2BAC SP2",
+    "date": "2025-10-18",
+    "type": "Vocabulary",
+    "title": "Unit 2: Humour - Vocabulary",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Types of humour",
+      "Comedy terms",
+      "Cultural humour"
+    ],
+    "homework": "Learn vocabulary list 2",
+    "timestamp": "2025-10-18T00:00:00.728Z"
+  },
+  {
+    "id": "CCSF3-2025-10-18-1764165710559",
+    "class": "CCSF3",
+    "date": "2025-10-18",
+    "type": "Grammar",
+    "title": "Unit 2: Present Simple for Routines",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Daily schedules",
+      "School routines",
+      "Time expressions"
+    ],
+    "homework": "Write your daily routine",
+    "timestamp": "2025-10-18T00:00:00.033Z"
+  },
+  {
+    "id": "CCS1-2025-10-20-1764165710559",
+    "class": "CCS1",
+    "date": "2025-10-20",
+    "type": "Writing",
+    "title": "Unit 2: Describing School Life",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Paragraph organization",
+      "Using examples",
+      "Cohesive devices"
+    ],
+    "homework": "Write first draft",
+    "timestamp": "2025-10-20T00:00:00.263Z"
+  },
+  {
+    "id": "CCS2-2025-10-20-1764165710559",
+    "class": "CCS2",
+    "date": "2025-10-20",
+    "type": "Writing",
+    "title": "Unit 2: Describing School Life",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Paragraph organization",
+      "Using examples",
+      "Cohesive devices"
+    ],
+    "homework": "Write first draft",
+    "timestamp": "2025-10-20T00:00:00.670Z"
+  },
+  {
+    "id": "CCSF3-2025-10-20-1764165710559",
+    "class": "CCSF3",
+    "date": "2025-10-20",
+    "type": "Writing",
+    "title": "Unit 2: Describing School Life",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Paragraph organization",
+      "Using examples",
+      "Cohesive devices"
+    ],
+    "homework": "Write first draft",
+    "timestamp": "2025-10-20T00:00:00.260Z"
+  },
+  {
+    "id": "CCSF2-2025-10-20-1764165710559",
+    "class": "CCSF2",
+    "date": "2025-10-20",
+    "type": "Writing",
+    "title": "Unit 2: Describing School Life",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Paragraph organization",
+      "Using examples",
+      "Cohesive devices"
+    ],
+    "homework": "Write first draft",
+    "timestamp": "2025-10-20T00:00:00.795Z"
+  },
+  {
+    "id": "CCSF1-2025-10-21-1764165710559",
+    "class": "CCSF1",
+    "date": "2025-10-21",
+    "type": "Writing",
+    "title": "Unit 2: Describing School Life",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Paragraph organization",
+      "Using examples",
+      "Cohesive devices"
+    ],
+    "homework": "Write first draft",
+    "timestamp": "2025-10-21T00:00:00.012Z"
+  },
+  {
+    "id": "CCSF2-2025-10-21-1764165710559",
+    "class": "CCSF2",
+    "date": "2025-10-21",
+    "type": "Communication",
+    "title": "Unit 2: Asking for Information",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Question formation",
+      "Polite requests",
+      "Classroom language"
+    ],
+    "homework": "Prepare questions",
+    "timestamp": "2025-10-21T00:00:00.376Z"
+  },
+  {
+    "id": "2BAC SP1-2025-10-22-1764165710559",
+    "class": "2BAC SP1",
+    "date": "2025-10-22",
+    "type": "Reading",
+    "title": "Unit 2: Understanding Humour",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Reading humorous texts",
+      "Cultural context",
+      "Wordplay and jokes"
+    ],
+    "homework": "Read pages 48-50",
+    "timestamp": "2025-10-22T00:00:00.927Z"
+  },
+  {
+    "id": "CCSF3-2025-10-22-1764165710559",
+    "class": "CCSF3",
+    "date": "2025-10-22",
+    "type": "Communication",
+    "title": "Unit 2: Asking for Information",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Question formation",
+      "Polite requests",
+      "Classroom language"
+    ],
+    "homework": "Prepare questions",
+    "timestamp": "2025-10-22T00:00:00.251Z"
+  },
+  {
+    "id": "CCS1-2025-10-22-1764165710559",
+    "class": "CCS1",
+    "date": "2025-10-22",
+    "type": "Communication",
+    "title": "Unit 2: Asking for Information",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Question formation",
+      "Polite requests",
+      "Classroom language"
+    ],
+    "homework": "Prepare questions",
+    "timestamp": "2025-10-22T00:00:00.241Z"
+  },
+  {
+    "id": "CCSF1-2025-10-22-1764165710559",
+    "class": "CCSF1",
+    "date": "2025-10-22",
+    "type": "Communication",
+    "title": "Unit 2: Asking for Information",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Question formation",
+      "Polite requests",
+      "Classroom language"
+    ],
+    "homework": "Prepare questions",
+    "timestamp": "2025-10-22T00:00:00.834Z"
+  },
+  {
+    "id": "CCSF2-2025-10-23-1764165710560",
+    "class": "CCSF2",
+    "date": "2025-10-23",
+    "type": "Speaking",
+    "title": "Unit 2: Discussing Education",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Expressing opinions",
+      "Agreeing and disagreeing",
+      "Supporting arguments"
+    ],
+    "homework": "Prepare opinion",
+    "timestamp": "2025-10-23T00:00:00.904Z"
+  },
+  {
+    "id": "2BAC SP2-2025-10-23-1764165710560",
+    "class": "2BAC SP2",
+    "date": "2025-10-23",
+    "type": "Reading",
+    "title": "Unit 2: Understanding Humour",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Reading humorous texts",
+      "Cultural context",
+      "Wordplay and jokes"
+    ],
+    "homework": "Read pages 48-50",
+    "timestamp": "2025-10-23T00:00:00.105Z"
+  },
+  {
+    "id": "2BAC SP1-2025-10-23-1764165710560",
+    "class": "2BAC SP1",
+    "date": "2025-10-23",
+    "type": "Grammar",
+    "title": "Unit 2: Modal Verbs (1)",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Can, could, may, might",
+      "Ability and possibility",
+      "Usage differences"
+    ],
+    "homework": "Practice page 55",
+    "timestamp": "2025-10-23T00:00:00.838Z"
+  },
+  {
+    "id": "CCS2-2025-10-23-1764165710560",
+    "class": "CCS2",
+    "date": "2025-10-23",
+    "type": "Communication",
+    "title": "Unit 2: Asking for Information",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Question formation",
+      "Polite requests",
+      "Classroom language"
+    ],
+    "homework": "Prepare questions",
+    "timestamp": "2025-10-23T00:00:00.962Z"
+  },
+  {
+    "id": "CCS2-2025-10-24-1764165710560",
+    "class": "CCS2",
+    "date": "2025-10-24",
+    "type": "Speaking",
+    "title": "Unit 2: Discussing Education",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Expressing opinions",
+      "Agreeing and disagreeing",
+      "Supporting arguments"
+    ],
+    "homework": "Prepare opinion",
+    "timestamp": "2025-10-24T00:00:00.457Z"
+  },
+  {
+    "id": "2BAC SP2-2025-10-24-1764165710560",
+    "class": "2BAC SP2",
+    "date": "2025-10-24",
+    "type": "Grammar",
+    "title": "Unit 2: Modal Verbs (1)",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Can, could, may, might",
+      "Ability and possibility",
+      "Usage differences"
+    ],
+    "homework": "Practice page 55",
+    "timestamp": "2025-10-24T00:00:00.239Z"
+  },
+  {
+    "id": "2BAC SP1-2025-10-24-1764165710560",
+    "class": "2BAC SP1",
+    "date": "2025-10-24",
+    "type": "Grammar",
+    "title": "Unit 2: Modal Verbs (2)",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Must, have to, should",
+      "Obligation and advice",
+      "Formal vs informal"
+    ],
+    "homework": "Complete exercises",
+    "timestamp": "2025-10-24T00:00:00.341Z"
+  },
+  {
+    "id": "CCS1-2025-10-24-1764165710560",
+    "class": "CCS1",
+    "date": "2025-10-24",
+    "type": "Speaking",
+    "title": "Unit 2: Discussing Education",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Expressing opinions",
+      "Agreeing and disagreeing",
+      "Supporting arguments"
+    ],
+    "homework": "Prepare opinion",
+    "timestamp": "2025-10-24T00:00:00.576Z"
+  },
+  {
+    "id": "CCSF1-2025-10-25-1764165710560",
+    "class": "CCSF1",
+    "date": "2025-10-25",
+    "type": "Speaking",
+    "title": "Unit 2: Discussing Education",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Expressing opinions",
+      "Agreeing and disagreeing",
+      "Supporting arguments"
+    ],
+    "homework": "Prepare opinion",
+    "timestamp": "2025-10-25T00:00:00.130Z"
+  },
+  {
+    "id": "2BAC SP2-2025-10-25-1764165710560",
+    "class": "2BAC SP2",
+    "date": "2025-10-25",
+    "type": "Grammar",
+    "title": "Unit 2: Modal Verbs (2)",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Must, have to, should",
+      "Obligation and advice",
+      "Formal vs informal"
+    ],
+    "homework": "Complete exercises",
+    "timestamp": "2025-10-25T00:00:00.215Z"
+  },
+  {
+    "id": "CCSF3-2025-10-25-1764165710560",
+    "class": "CCSF3",
+    "date": "2025-10-25",
+    "type": "Speaking",
+    "title": "Unit 2: Discussing Education",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Expressing opinions",
+      "Agreeing and disagreeing",
+      "Supporting arguments"
+    ],
+    "homework": "Prepare opinion",
+    "timestamp": "2025-10-25T00:00:00.213Z"
+  },
+  {
+    "id": "CCS1-2025-10-27-1764165710561",
+    "class": "CCS1",
+    "date": "2025-10-27",
+    "type": "Grammar",
+    "title": "Unit 2: Modal Verbs - Can/Could",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Ability and possibility",
+      "Polite requests",
+      "Differences in meaning"
+    ],
+    "homework": "Practice page 45",
+    "timestamp": "2025-10-27T00:00:00.081Z"
+  },
+  {
+    "id": "CCS2-2025-10-27-1764165710561",
+    "class": "CCS2",
+    "date": "2025-10-27",
+    "type": "Grammar",
+    "title": "Unit 2: Modal Verbs - Can/Could",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Ability and possibility",
+      "Polite requests",
+      "Differences in meaning"
+    ],
+    "homework": "Practice page 45",
+    "timestamp": "2025-10-27T00:00:00.829Z"
+  },
+  {
+    "id": "CCSF3-2025-10-27-1764165710561",
+    "class": "CCSF3",
+    "date": "2025-10-27",
+    "type": "Grammar",
+    "title": "Unit 2: Modal Verbs - Can/Could",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Ability and possibility",
+      "Polite requests",
+      "Differences in meaning"
+    ],
+    "homework": "Practice page 45",
+    "timestamp": "2025-10-27T00:00:00.530Z"
+  },
+  {
+    "id": "CCSF2-2025-10-27-1764165710561",
+    "class": "CCSF2",
+    "date": "2025-10-27",
+    "type": "Grammar",
+    "title": "Unit 2: Modal Verbs - Can/Could",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Ability and possibility",
+      "Polite requests",
+      "Differences in meaning"
+    ],
+    "homework": "Practice page 45",
+    "timestamp": "2025-10-27T00:00:00.209Z"
+  },
+  {
+    "id": "CCSF1-2025-10-28-1764165710561",
+    "class": "CCSF1",
+    "date": "2025-10-28",
+    "type": "Grammar",
+    "title": "Unit 2: Modal Verbs - Can/Could",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Ability and possibility",
+      "Polite requests",
+      "Differences in meaning"
+    ],
+    "homework": "Practice page 45",
+    "timestamp": "2025-10-28T00:00:00.993Z"
+  },
+  {
+    "id": "CCSF2-2025-10-28-1764165710561",
+    "class": "CCSF2",
+    "date": "2025-10-28",
+    "type": "Writing",
+    "title": "Unit 2: School Essay",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Essay structure",
+      "Introduction and conclusion",
+      "Body paragraphs"
+    ],
+    "homework": "Complete essay",
+    "timestamp": "2025-10-28T00:00:00.847Z"
+  },
+  {
+    "id": "2BAC SP1-2025-10-29-1764165710561",
+    "class": "2BAC SP1",
+    "date": "2025-10-29",
+    "type": "Communication",
+    "title": "Unit 2: Making Requests",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Polite request forms",
+      "Would/Could you...?",
+      "Responding appropriately"
+    ],
+    "homework": "Practice dialogues",
+    "timestamp": "2025-10-29T00:00:00.645Z"
+  },
+  {
+    "id": "CCSF3-2025-10-29-1764165710561",
+    "class": "CCSF3",
+    "date": "2025-10-29",
+    "type": "Writing",
+    "title": "Unit 2: School Essay",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Essay structure",
+      "Introduction and conclusion",
+      "Body paragraphs"
+    ],
+    "homework": "Complete essay",
+    "timestamp": "2025-10-29T00:00:00.416Z"
+  },
+  {
+    "id": "CCS1-2025-10-29-1764165710561",
+    "class": "CCS1",
+    "date": "2025-10-29",
+    "type": "Writing",
+    "title": "Unit 2: School Essay",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Essay structure",
+      "Introduction and conclusion",
+      "Body paragraphs"
+    ],
+    "homework": "Complete essay",
+    "timestamp": "2025-10-29T00:00:00.222Z"
+  },
+  {
+    "id": "CCSF1-2025-10-29-1764165710561",
+    "class": "CCSF1",
+    "date": "2025-10-29",
+    "type": "Writing",
+    "title": "Unit 2: School Essay",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Essay structure",
+      "Introduction and conclusion",
+      "Body paragraphs"
+    ],
+    "homework": "Complete essay",
+    "timestamp": "2025-10-29T00:00:00.908Z"
+  },
+  {
+    "id": "CCSF2-2025-10-30-1764165710561",
+    "class": "CCSF2",
+    "date": "2025-10-30",
+    "type": "Review",
+    "title": "Unit 2 Review - Education",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Review all unit content",
+      "Practice activities",
+      "Prepare for test"
+    ],
+    "homework": "Study all notes",
+    "timestamp": "2025-10-30T00:00:00.343Z"
+  },
+  {
+    "id": "2BAC SP2-2025-10-30-1764165710561",
+    "class": "2BAC SP2",
+    "date": "2025-10-30",
+    "type": "Communication",
+    "title": "Unit 2: Making Requests",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Polite request forms",
+      "Would/Could you...?",
+      "Responding appropriately"
+    ],
+    "homework": "Practice dialogues",
+    "timestamp": "2025-10-30T00:00:00.737Z"
+  },
+  {
+    "id": "2BAC SP1-2025-10-30-1764165710561",
+    "class": "2BAC SP1",
+    "date": "2025-10-30",
+    "type": "Writing",
+    "title": "Unit 2: Narrative Writing",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Story structure",
+      "Plot development",
+      "Character description"
+    ],
+    "homework": "Plan story",
+    "timestamp": "2025-10-30T00:00:00.841Z"
+  },
+  {
+    "id": "CCS2-2025-10-30-1764165710561",
+    "class": "CCS2",
+    "date": "2025-10-30",
+    "type": "Writing",
+    "title": "Unit 2: School Essay",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Essay structure",
+      "Introduction and conclusion",
+      "Body paragraphs"
+    ],
+    "homework": "Complete essay",
+    "timestamp": "2025-10-30T00:00:00.926Z"
+  },
+  {
+    "id": "CCS2-2025-10-31-1764165710562",
+    "class": "CCS2",
+    "date": "2025-10-31",
+    "type": "Review",
+    "title": "Unit 2 Review - Education",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Review all unit content",
+      "Practice activities",
+      "Prepare for test"
+    ],
+    "homework": "Study all notes",
+    "timestamp": "2025-10-31T00:00:00.481Z"
+  },
+  {
+    "id": "2BAC SP2-2025-10-31-1764165710562",
+    "class": "2BAC SP2",
+    "date": "2025-10-31",
+    "type": "Writing",
+    "title": "Unit 2: Narrative Writing",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Story structure",
+      "Plot development",
+      "Character description"
+    ],
+    "homework": "Plan story",
+    "timestamp": "2025-10-31T00:00:00.691Z"
+  },
+  {
+    "id": "2BAC SP1-2025-10-31-1764165710562",
+    "class": "2BAC SP1",
+    "date": "2025-10-31",
+    "type": "Speaking",
+    "title": "Unit 2: Telling Jokes and Stories",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Delivery techniques",
+      "Timing and pacing",
+      "Engaging audience"
+    ],
+    "homework": "Prepare presentation",
+    "timestamp": "2025-10-31T00:00:00.652Z"
+  },
+  {
+    "id": "CCS1-2025-10-31-1764165710562",
+    "class": "CCS1",
+    "date": "2025-10-31",
+    "type": "Review",
+    "title": "Unit 2 Review - Education",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Review all unit content",
+      "Practice activities",
+      "Prepare for test"
+    ],
+    "homework": "Study all notes",
+    "timestamp": "2025-10-31T00:00:00.841Z"
+  },
+  {
+    "id": "CCSF1-2025-11-01-1764165710562",
+    "class": "CCSF1",
+    "date": "2025-11-01",
+    "type": "Review",
+    "title": "Unit 2 Review - Education",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Review all unit content",
+      "Practice activities",
+      "Prepare for test"
+    ],
+    "homework": "Study all notes",
+    "timestamp": "2025-11-01T00:00:00.373Z"
+  },
+  {
+    "id": "2BAC SP2-2025-11-01-1764165710562",
+    "class": "2BAC SP2",
+    "date": "2025-11-01",
+    "type": "Speaking",
+    "title": "Unit 2: Telling Jokes and Stories",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Delivery techniques",
+      "Timing and pacing",
+      "Engaging audience"
+    ],
+    "homework": "Prepare presentation",
+    "timestamp": "2025-11-01T00:00:00.578Z"
+  },
+  {
+    "id": "CCSF3-2025-11-01-1764165710562",
+    "class": "CCSF3",
+    "date": "2025-11-01",
+    "type": "Review",
+    "title": "Unit 2 Review - Education",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Review all unit content",
+      "Practice activities",
+      "Prepare for test"
+    ],
+    "homework": "Study all notes",
+    "timestamp": "2025-11-01T00:00:00.624Z"
+  },
+  {
+    "id": "CCS1-2025-11-03-1764165710562",
+    "class": "CCS1",
+    "date": "2025-11-03",
+    "type": "Assessment",
+    "title": "Test Preview - Unit 2",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Test format overview",
+      "Practice questions",
+      "Final preparation"
+    ],
+    "homework": "Final review",
+    "timestamp": "2025-11-03T00:00:00.146Z"
+  },
+  {
+    "id": "CCS2-2025-11-03-1764165710563",
+    "class": "CCS2",
+    "date": "2025-11-03",
+    "type": "Assessment",
+    "title": "Test Preview - Unit 2",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Test format overview",
+      "Practice questions",
+      "Final preparation"
+    ],
+    "homework": "Final review",
+    "timestamp": "2025-11-03T00:00:00.160Z"
+  },
+  {
+    "id": "CCSF3-2025-11-03-1764165710563",
+    "class": "CCSF3",
+    "date": "2025-11-03",
+    "type": "Assessment",
+    "title": "Test Preview - Unit 2",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Test format overview",
+      "Practice questions",
+      "Final preparation"
+    ],
+    "homework": "Final review",
+    "timestamp": "2025-11-03T00:00:00.564Z"
+  },
+  {
+    "id": "CCSF2-2025-11-03-1764165710563",
+    "class": "CCSF2",
+    "date": "2025-11-03",
+    "type": "Assessment",
+    "title": "Test Preview - Unit 2",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Test format overview",
+      "Practice questions",
+      "Final preparation"
+    ],
+    "homework": "Final review",
+    "timestamp": "2025-11-03T00:00:00.152Z"
+  },
+  {
+    "id": "CCSF1-2025-11-04-1764165710563",
+    "class": "CCSF1",
+    "date": "2025-11-04",
+    "type": "Assessment",
+    "title": "Test Preview - Unit 2",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Test format overview",
+      "Practice questions",
+      "Final preparation"
+    ],
+    "homework": "Final review",
+    "timestamp": "2025-11-04T00:00:00.988Z"
+  },
+  {
+    "id": "CCSF2-2025-11-04-1764165710563",
+    "class": "CCSF2",
+    "date": "2025-11-04",
+    "type": "Assessment",
+    "title": "Test 2 - Education",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Written test",
+      "All unit content",
+      "Writing task"
+    ],
+    "homework": "None",
+    "timestamp": "2025-11-04T00:00:00.858Z"
+  },
+  {
+    "id": "2BAC SP1-2025-11-05-1764165710563",
+    "class": "2BAC SP1",
+    "date": "2025-11-05",
+    "type": "Review",
+    "title": "Unit 2 Review - Humour",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Review all content",
+      "Practice activities",
+      "Test preparation"
+    ],
+    "homework": "Study all notes",
+    "timestamp": "2025-11-05T00:00:00.299Z"
+  },
+  {
+    "id": "CCSF3-2025-11-05-1764165710563",
+    "class": "CCSF3",
+    "date": "2025-11-05",
+    "type": "Assessment",
+    "title": "Test 2 - Education",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Written test",
+      "All unit content",
+      "Writing task"
+    ],
+    "homework": "None",
+    "timestamp": "2025-11-05T00:00:00.784Z"
+  },
+  {
+    "id": "CCS1-2025-11-05-1764165710563",
+    "class": "CCS1",
+    "date": "2025-11-05",
+    "type": "Assessment",
+    "title": "Test 2 - Education",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Written test",
+      "All unit content",
+      "Writing task"
+    ],
+    "homework": "None",
+    "timestamp": "2025-11-05T00:00:00.713Z"
+  },
+  {
+    "id": "CCSF1-2025-11-05-1764165710563",
+    "class": "CCSF1",
+    "date": "2025-11-05",
+    "type": "Assessment",
+    "title": "Test 2 - Education",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Written test",
+      "All unit content",
+      "Writing task"
+    ],
+    "homework": "None",
+    "timestamp": "2025-11-05T00:00:00.754Z"
+  },
+  {
+    "id": "CCSF2-2025-11-06-1764165710563",
+    "class": "CCSF2",
+    "date": "2025-11-06",
+    "type": "Review",
+    "title": "Test Correction - Unit 2",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Review answers",
+      "Error analysis",
+      "Improvement strategies"
+    ],
+    "homework": "Review corrections",
+    "timestamp": "2025-11-06T00:00:00.022Z"
+  },
+  {
+    "id": "2BAC SP2-2025-11-06-1764165710563",
+    "class": "2BAC SP2",
+    "date": "2025-11-06",
+    "type": "Review",
+    "title": "Unit 2 Review - Humour",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Review all content",
+      "Practice activities",
+      "Test preparation"
+    ],
+    "homework": "Study all notes",
+    "timestamp": "2025-11-06T00:00:00.059Z"
+  },
+  {
+    "id": "2BAC SP1-2025-11-06-1764165710563",
+    "class": "2BAC SP1",
+    "date": "2025-11-06",
+    "type": "Assessment",
+    "title": "Test 2 - Humour",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Written test",
+      "Grammar and writing",
+      "Communication task"
+    ],
+    "homework": "None",
+    "timestamp": "2025-11-06T00:00:00.934Z"
+  },
+  {
+    "id": "CCS2-2025-11-06-1764165710563",
+    "class": "CCS2",
+    "date": "2025-11-06",
+    "type": "Assessment",
+    "title": "Test 2 - Education",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Written test",
+      "All unit content",
+      "Writing task"
+    ],
+    "homework": "None",
+    "timestamp": "2025-11-06T00:00:00.352Z"
+  },
+  {
+    "id": "CCS2-2025-11-07-1764165710563",
+    "class": "CCS2",
+    "date": "2025-11-07",
+    "type": "Review",
+    "title": "Test Correction - Unit 2",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Review answers",
+      "Error analysis",
+      "Improvement strategies"
+    ],
+    "homework": "Review corrections",
+    "timestamp": "2025-11-07T00:00:00.148Z"
+  },
+  {
+    "id": "2BAC SP2-2025-11-07-1764165710563",
+    "class": "2BAC SP2",
+    "date": "2025-11-07",
+    "type": "Assessment",
+    "title": "Test 2 - Humour",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Written test",
+      "Grammar and writing",
+      "Communication task"
+    ],
+    "homework": "None",
+    "timestamp": "2025-11-07T00:00:00.994Z"
+  },
+  {
+    "id": "2BAC SP1-2025-11-07-1764165710563",
+    "class": "2BAC SP1",
+    "date": "2025-11-07",
+    "type": "Review",
+    "title": "Semester Review",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Units 1-2 review",
+      "Global test preparation",
+      "Practice activities"
+    ],
+    "homework": "Study for global test",
+    "timestamp": "2025-11-07T00:00:00.599Z"
+  },
+  {
+    "id": "CCS1-2025-11-07-1764165710563",
+    "class": "CCS1",
+    "date": "2025-11-07",
+    "type": "Review",
+    "title": "Test Correction - Unit 2",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Review answers",
+      "Error analysis",
+      "Improvement strategies"
+    ],
+    "homework": "Review corrections",
+    "timestamp": "2025-11-07T00:00:00.051Z"
+  },
+  {
+    "id": "CCSF1-2025-11-08-1764165710564",
+    "class": "CCSF1",
+    "date": "2025-11-08",
+    "type": "Review",
+    "title": "Test Correction - Unit 2",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Review answers",
+      "Error analysis",
+      "Improvement strategies"
+    ],
+    "homework": "Review corrections",
+    "timestamp": "2025-11-08T00:00:00.246Z"
+  },
+  {
+    "id": "2BAC SP2-2025-11-08-1764165710564",
+    "class": "2BAC SP2",
+    "date": "2025-11-08",
+    "type": "Review",
+    "title": "Semester Review",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Units 1-2 review",
+      "Global test preparation",
+      "Practice activities"
+    ],
+    "homework": "Study for global test",
+    "timestamp": "2025-11-08T00:00:00.808Z"
+  },
+  {
+    "id": "CCSF3-2025-11-08-1764165710564",
+    "class": "CCSF3",
+    "date": "2025-11-08",
+    "type": "Review",
+    "title": "Test Correction - Unit 2",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Review answers",
+      "Error analysis",
+      "Improvement strategies"
+    ],
+    "homework": "Review corrections",
+    "timestamp": "2025-11-08T00:00:00.941Z"
+  },
+  {
+    "id": "CCS1-2025-11-10-1764165710564",
+    "class": "CCS1",
+    "date": "2025-11-10",
+    "type": "Review",
+    "title": "Semester Review",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Review Units 1-2",
+      "Practice activities",
+      "Prepare for global test"
+    ],
+    "homework": "Study for global test",
+    "timestamp": "2025-11-10T00:00:00.218Z"
+  },
+  {
+    "id": "CCS2-2025-11-10-1764165710564",
+    "class": "CCS2",
+    "date": "2025-11-10",
+    "type": "Review",
+    "title": "Semester Review",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Review Units 1-2",
+      "Practice activities",
+      "Prepare for global test"
+    ],
+    "homework": "Study for global test",
+    "timestamp": "2025-11-10T00:00:00.668Z"
+  },
+  {
+    "id": "CCSF3-2025-11-10-1764165710564",
+    "class": "CCSF3",
+    "date": "2025-11-10",
+    "type": "Review",
+    "title": "Semester Review",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Review Units 1-2",
+      "Practice activities",
+      "Prepare for global test"
+    ],
+    "homework": "Study for global test",
+    "timestamp": "2025-11-10T00:00:00.250Z"
+  },
+  {
+    "id": "CCSF2-2025-11-10-1764165710564",
+    "class": "CCSF2",
+    "date": "2025-11-10",
+    "type": "Review",
+    "title": "Semester Review",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Review Units 1-2",
+      "Practice activities",
+      "Prepare for global test"
+    ],
+    "homework": "Study for global test",
+    "timestamp": "2025-11-10T00:00:00.207Z"
+  },
+  {
+    "id": "CCSF1-2025-11-11-1764165710565",
+    "class": "CCSF1",
+    "date": "2025-11-11",
+    "type": "Review",
+    "title": "Semester Review",
+    "materials": "Interactive lessons using data show",
+    "points": [
+      "Review Units 1-2",
+      "Practice activities",
+      "Prepare for global test"
+    ],
+    "homework": "Study for global test",
+    "timestamp": "2025-11-11T00:00:00.988Z"
+  }
+];
+        
+        function importLessons() {
+            const statusDiv = document.getElementById('status');
+            
+            try {
+                // Get existing lessons
+                let existingLessons = JSON.parse(localStorage.getItem('teacherLessons') || '[]');
+                
+                // Add new lessons
+                existingLessons = existingLessons.concat(lessonsData);
+                
+                // Save back to localStorage
+                localStorage.setItem('teacherLessons', JSON.stringify(existingLessons));
+                
+                statusDiv.className = 'success-message';
+                statusDiv.style.display = 'block';
+                statusDiv.innerHTML = `
+                    <strong>✅ Success!</strong><br>
+                    Imported ${lessonsData.length} lessons successfully.<br>
+                    Total lessons in your record: ${existingLessons.length}<br><br>
+                    <a href="index.html" style="color: #155724; text-decoration: underline;">Click here to view in Record Book</a>
+                `;
+                
+                // Change button to success
+                const btn = document.querySelector('.btn-primary');
+                btn.className = 'btn btn-success';
+                btn.textContent = '✓ Import Complete!';
+                btn.disabled = true;
+                
+            } catch (error) {
+                statusDiv.className = 'error-message';
+                statusDiv.style.display = 'block';
+                statusDiv.innerHTML = `
+                    <strong>❌ Error:</strong><br>
+                    ${error.message}<br><br>
+                    Please try again or contact support.
+                `;
+            }
+        }
+        
+        function goToApp() {
+            window.location.href = 'index.html';
+        }
+        
+        // Check if data is already loaded
+        window.onload = function() {
+            const existing = JSON.parse(localStorage.getItem('teacherLessons') || '[]');
+            if (existing.length > 0) {
+                const statusDiv = document.getElementById('status');
+                statusDiv.style.display = 'block';
+                statusDiv.style.background = '#e3f2fd';
+                statusDiv.style.borderLeft = '4px solid #2196F3';
+                statusDiv.style.color = '#1976D2';
+                statusDiv.innerHTML = `
+                    <strong>ℹ️ Note:</strong> You already have ${existing.length} lessons in your record book.
+                `;
+            }
+        };
+    </script>
+</body>
+</html>
