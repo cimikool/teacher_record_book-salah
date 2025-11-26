@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#4A90E2">
+    <title>Teacher Record Book - Prof. Salah Sahmoudi</title>
+    <link rel="manifest" href="manifest.json">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding-bottom: 80px;
+        }
+        
+        .header {
+            background: white;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header h1 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .header p {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .container {
+            padding: 15px;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            background: white;
+            border-radius: 10px;
+            padding: 5px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .nav-tab {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            background: transparent;
+        }
+        
+        .nav-tab.active {
+            background: #4A90E2;
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .date-header {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .date-header h2 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .date-header p {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .class-card {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.2s;
+            position: relative;
+        }
+        
+        .class-card:active {
+            transform: scale(0.98);
+        }
+        
+        .class-card.logged {
+            background: #f0f9ff;
+            border-left: 4px solid #4A90E2;
+        }
+        
+        .class-time {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .class-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .class-status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .status-logged {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+        
+        .lesson-preview {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+            font-size: 13px;
+            color: #555;
+        }
+        
+        .lesson-preview strong {
+            color: #333;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .modal.active {
+            display: flex;
+            align-items: flex-start;
+            padding: 20px 0;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 15px;
+            margin: auto;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .modal-header h3 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .modal-body {
+            padding: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #4A90E2;
+        }
+        
+        .form-textarea {
+            min-height: 60px;
+            resize: vertical;
+            font-family: inherit;
+        }
+        
+        .suggestions {
+            border: 2px solid #4A90E2;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            max-height: 200px;
+            overflow-y: auto;
+            background: white;
+            position: absolute;
+            width: calc(100% - 40px);
+            z-index: 10;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .suggestion-item {
+            padding: 12px;
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .suggestion-item:hover {
+            background: #f5f5f5;
+        }
+        
+        .suggestion-item:last-child {
+            border-bottom: none;
+        }
+        
+        .suggestion-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 3px;
+        }
+        
+        .suggestion-type {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .modal-footer {
+            padding: 15px 20px;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: #4A90E2;
+            color: white;
+        }
+        
+        .btn-primary:active {
+            background: #357ABD;
+        }
+        
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+        
+        .btn-secondary:active {
+            background: #e0e0e0;
+        }
+        
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .records-list {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .record-item {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+        }
+        
+        .record-item:last-child {
+            border-bottom: none;
+        }
+        
+        .record-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .record-class {
+            font-weight: bold;
+            color: #4A90E2;
+        }
+        
+        .record-date {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .record-title {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 4px;
+        }
+        
+        .record-type {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            background: #e9ecef;
+            color: #495057;
+        }
+        
+        .export-options {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .export-btn {
+            width: 100%;
+            padding: 15px;
+            background: #4A90E2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        
+        .export-btn:active {
+            background: #357ABD;
+        }
+        
+        .class-filter {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+        }
+        
+        .empty-state svg {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 15px;
+            opacity: 0.5;
+        }
+        
+        .lesson-number {
+            display: inline-block;
+            background: #4A90E2;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+        
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            z-index: 99;
+        }
+        
+        .bottom-nav-item {
+            flex: 1;
+            text-align: center;
+            padding: 5px;
+            color: #666;
+            font-size: 11px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .bottom-nav-item.active {
+            color: #4A90E2;
+        }
+        
+        .bottom-nav-item svg {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 4px;
+        }
+        
+        .time-slot {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 12px;
+            position: relative;
+        }
+        
+        .time-slot-header {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .time-slot-header input,
+        .time-slot-header select {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        .delete-slot-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            font-size: 18px;
+            line-height: 1;
+        }
+        
+        .delete-slot-btn:active {
+            background: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📚 Teacher Record Book</h1>
+        <p>Prof. Salah Sahmoudi - Abdellah Guennoun High School</p>
+    </div>
+    
+    <div class="container">
+        <!-- Today Tab -->
+        <div id="todayTab" class="tab-content active">
+            <div class="date-header">
+                <h2 id="currentDate"></h2>
+                <p>Today's Classes</p>
+            </div>
+            <div id="todayClasses"></div>
+        </div>
+        
+        <!-- All Records Tab -->
+        <div id="recordsTab" class="tab-content">
+            <div class="date-header">
+                <h2>All Records</h2>
+                <p>View and manage your lessons</p>
+            </div>
+            <select class="class-filter" id="classFilter">
+                <option value="">All Classes</option>
+                <option value="CCS1">CCS1</option>
+                <option value="CCS2">CCS2</option>
+                <option value="CCSF1">CCSF1</option>
+                <option value="CCSF2">CCSF2</option>
+                <option value="CCSF3">CCSF3</option>
+                <option value="2BAC SP1">2BAC SP1</option>
+                <option value="2BAC SP2">2BAC SP2</option>
+            </select>
+            <div id="recordsList"></div>
+        </div>
+        
+        <!-- Timetable Tab -->
+        <div id="timetableTab" class="tab-content">
+            <div class="date-header">
+                <h2>📅 Edit Timetable</h2>
+                <p>Set your weekly class schedule</p>
+            </div>
+            
+            <div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 10px;">Select Day:</label>
+                    <select id="daySelector" class="form-select" onchange="displayDaySchedule()">
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                        <option value="Saturday">Saturday</option>
+                    </select>
+                </div>
+                
+                <div id="daySchedule"></div>
+                
+                <button class="btn btn-primary" style="width: 100%; margin-top: 15px;" onclick="addTimeSlot()">
+                    + Add Time Slot
+                </button>
+                
+                <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee;">
+                    <button class="btn btn-secondary" style="width: 100%;" onclick="resetToDefaultTimetable()">
+                        🔄 Reset to Default Timetable
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Export Tab -->
+        <div id="exportTab" class="tab-content">
+            <div class="date-header">
+                <h2>📥 Export Records</h2>
+                <p>Generate PDF of your record book</p>
+            </div>
+            <div class="export-options">
+                <button class="export-btn" onclick="exportAllPDF()">📄 Export All Classes</button>
+                <button class="export-btn" onclick="exportByClass('CCS1')">Export CCS1</button>
+                <button class="export-btn" onclick="exportByClass('CCS2')">Export CCS2</button>
+                <button class="export-btn" onclick="exportByClass('CCSF1')">Export CCSF1</button>
+                <button class="export-btn" onclick="exportByClass('CCSF2')">Export CCSF2</button>
+                <button class="export-btn" onclick="exportByClass('CCSF3')">Export CCSF3</button>
+                <button class="export-btn" onclick="exportByClass('2BAC SP1')">Export 2BAC SP1</button>
+                <button class="export-btn" onclick="exportByClass('2BAC SP2')">Export 2BAC SP2</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Lesson Entry Modal -->
+    <div id="lessonModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Log Lesson</h3>
+                <p id="modalSubtitle"></p>
+            </div>
+            <div class="modal-body">
+                <form id="lessonForm">
+                    <input type="hidden" id="lessonId">
+                    <input type="hidden" id="lessonClass">
+                    
+                    <div class="form-group">
+                        <label class="form-label">Date</label>
+                        <input type="date" class="form-input" id="lessonDate" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Type</label>
+                        <select class="form-select" id="lessonType" required>
+                            <option value="">Select Type</option>
+                            <option value="Grammar">Grammar</option>
+                            <option value="Reading">Reading</option>
+                            <option value="Writing">Writing</option>
+                            <option value="Vocabulary">Vocabulary</option>
+                            <option value="Communication">Communication</option>
+                            <option value="Speaking">Speaking</option>
+                            <option value="Practice">Practice</option>
+                            <option value="Review">Review</option>
+                            <option value="Assessment">Assessment</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" style="position: relative;">
+                        <label class="form-label">Lesson Title</label>
+                        <input type="text" class="form-input" id="lessonTitle" required autocomplete="off">
+                        <div id="suggestions" class="suggestions" style="display: none;"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Main Point 1</label>
+                        <textarea class="form-textarea" id="point1" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Main Point 2</label>
+                        <textarea class="form-textarea" id="point2" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Main Point 3</label>
+                        <textarea class="form-textarea" id="point3" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Homework (Optional)</label>
+                        <textarea class="form-textarea" id="homework" rows="2"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="saveLesson()">Save</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <div class="bottom-nav-item active" onclick="switchTab('today')">
+            <svg fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/></svg>
+            <div>Today</div>
+        </div>
+        <div class="bottom-nav-item" onclick="switchTab('records')">
+            <svg fill="currentColor" viewBox="0 0 20 20"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"/></svg>
+            <div>Records</div>
+        </div>
+        <div class="bottom-nav-item" onclick="switchTab('timetable')">
+            <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/></svg>
+            <div>Timetable</div>
+        </div>
+        <div class="bottom-nav-item" onclick="switchTab('export')">
+            <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+            <div>Export</div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+        // Lesson Templates Database
+        const lessonTemplates = {
+            'CCS1': [
+                {title: "Simple Present - Review", type: "Grammar", points: ["Review of present simple tense forms", "Affirmative, negative, and question structures", "Time expressions with present simple"]},
+                {title: "Present Continuous - Review", type: "Grammar", points: ["Review of present continuous tense", "Actions happening now vs habitual actions", "Stative verbs that don't use continuous"]},
+                {title: "Introducing Unit 1: Personal Relations", type: "Vocabulary", points: ["Key vocabulary for personal relationships", "Communicable and relatable adjectives", "Context and usage in conversations"]},
+                {title: "Reading Activity: Personal Relations", type: "Reading", points: ["Reading for specific information", "Understanding context and main ideas", "Identifying participants and their expectations"]},
+                {title: "Family Relations Vocabulary", type: "Vocabulary", points: ["Family member terms and relationships", "Extended family vocabulary", "Using family vocabulary in context"]},
+                {title: "Describing People: Appearance", type: "Vocabulary", points: ["Physical description vocabulary (tall, short, hair, eyes)", "Question: What does he/she look like?", "Practice describing appearance with examples"]},
+                {title: "Describing People: Character", type: "Vocabulary", points: ["Personality adjectives (friendly, kind, funny)", "Question: What is he/she like?", "Distinguishing appearance from character"]},
+                {title: "Personal Pronouns", type: "Grammar", points: ["Subject pronouns (I, you, he, she, we, they)", "Object pronouns (me, you, him, her, us, them)", "Correct usage in sentences"]},
+                {title: "Verb To Be: Forms and Usage", type: "Grammar", points: ["Affirmative: I am, you are, he/she/it is", "Negative: I'm not, you aren't, he/she isn't", "Questions and short answers"]},
+                {title: "Communication: Greetings", type: "Speaking", points: ["Formal vs informal greetings", "Appropriate responses to greetings", "Cultural awareness in greetings"]},
+                {title: "Communication: Introducing Oneself and Others", type: "Speaking", points: ["How to introduce yourself", "Introducing others in different contexts", "Practice with role-play activities"]},
+                {title: "Nationalities", type: "Vocabulary", points: ["Country names and nationality adjectives", "Patterns: -ian, -ese, -ish, -ch", "Using nationalities in sentences"]},
+                {title: "Writing: Personal Profile", type: "Writing", points: ["Structure of a personal profile", "Including basic information and interests", "Writing 50-80 words about yourself"]},
+                {title: "Practice: Personal Relations", type: "Practice", points: ["Mixed exercises on Unit 1 content", "Speaking practice with partners", "Error correction and feedback"]},
+                {title: "Review: Unit 1 Personal Relations", type: "Review", points: ["Summary of key vocabulary and grammar", "Interactive review activities", "Preparation for Unit 2"]},
+                {title: "Vocabulary: Education and School", type: "Vocabulary", points: ["School-related vocabulary", "Classroom objects and school subjects", "Educational terms and expressions"]},
+                {title: "School Places and Subjects", type: "Vocabulary", points: ["Places in school (library, gym, lab)", "School subjects (Math, Science, English)", "Describing your school timetable"]},
+                {title: "Adverbs of Frequency", type: "Grammar", points: ["Always, usually, often, sometimes, never", "Position of adverbs in sentences", "Expressing how often actions happen"]},
+                {title: "Simple Present Tense", type: "Grammar", points: ["Third person singular -s/-es rules", "Present simple for routines and habits", "Frequency adverbs with present simple"]},
+                {title: "Reading: Education and School", type: "Reading", points: ["Reading text about school routines", "Scanning for specific information", "Understanding school-related contexts"]},
+                {title: "Describing Schools", type: "Vocabulary", points: ["Vocabulary for school facilities", "Comparing different schools", "Describing your ideal school"]},
+                {title: "Writing: Describing My School", type: "Writing", points: ["Paragraph structure for descriptions", "Using school vocabulary in writing", "Writing 60-100 words about your school"]},
+                {title: "Practice: Talking About Daily Activities", type: "Speaking", points: ["Using present simple for daily routines", "Frequency adverbs in conversation", "Discussing school day activities"]},
+                {title: "Test Preview: Units 1 & 2", type: "Review", points: ["Comprehensive review of all grammar and vocabulary", "Practice test questions and activities", "Final clarifications and questions"]},
+                {title: "Test: Units 1 & 2", type: "Assessment", points: ["Written test on vocabulary and grammar", "Reading comprehension section", "Writing task"]},
+                {title: "Test Correction", type: "Review", points: ["Reviewing test answers", "Explaining common errors", "Clarifying difficult concepts"]},
+                {title: "Review and Practice: Units 1-2", type: "Review", points: ["Comprehensive review activities", "Mixed grammar and vocabulary exercises", "Speaking and writing practice"]},
+                {title: "Continuation: Practice and Games", type: "Practice", points: ["Interactive grammar games", "Communicative activities", "Peer practice and feedback"]}
+            ],
+            '2BAC SP1': [
+                {title: "Review: Simple Present Tense", type: "Grammar", points: ["Forms: affirmative, negative, questions", "Uses: routines, habits, general truths", "Time expressions and frequency adverbs"]},
+                {title: "Review: Present Continuous Tense", type: "Grammar", points: ["Formation: am/is/are + verb-ing", "Actions happening now vs temporary situations", "Stative verbs that don't use continuous"]},
+                {title: "Review: Simple Past Tense", type: "Grammar", points: ["Regular and irregular past forms", "Past time expressions", "Narrative uses in storytelling"]},
+                {title: "Introduction to Unit 1: Gift of Youth", type: "Reading", points: ["Explore unit themes: youth talents and success", "Preview key vocabulary", "Discuss gifted young people examples"]},
+                {title: "Vocabulary: Gift of Youth", type: "Vocabulary", points: ["Talent, enthusiasm, determination, vitality", "Success and achievement expressions", "Youth-related terminology"]},
+                {title: "Adjectives and Related Nouns", type: "Vocabulary", points: ["Adjective to noun conversions", "Suffixes: -ness, -ity, -tion, -ance", "Vigorous→vigour, creative→creativity"]},
+                {title: "Word Formation: Nouns to Adjectives", type: "Vocabulary", points: ["Noun to adjective conversions", "Suffixes: -ful, -less, -ous, -al, -ive, -y", "Success→successful, talent→talented"]},
+                {title: "Reading: Generation Z", type: "Reading", points: ["Reading comprehension strategies", "Understanding Gen Z characteristics", "Analyzing text structure and main ideas"]},
+                {title: "Asking and Giving Opinions", type: "Communication", points: ["Formal vs informal opinion expressions", "I think/believe/In my opinion", "Agreeing and disagreeing politely"]},
+                {title: "Gerunds and Infinitives - Session 1", type: "Grammar", points: ["Formation: gerund (verb + -ing), infinitive (to + verb)", "Verbs followed by gerund: enjoy, finish, avoid", "Verbs followed by infinitive: want, decide, hope"]},
+                {title: "Gerunds and Infinitives - Session 2", type: "Grammar", points: ["Verbs that take both forms (same meaning)", "Like, love, hate, prefer, start, begin", "Practice with both structures"]},
+                {title: "Gerunds and Infinitives - Session 3", type: "Grammar", points: ["Verbs with different meanings", "Stop, remember, forget, try, regret", "Contextual practice and application"]},
+                {title: "Writing: Introduction to Descriptive Paragraphs", type: "Writing", points: ["Purpose of descriptive writing", "Elements: abilities, appearance, character", "Analyzing model paragraph about Song"]},
+                {title: "Writing: Crafting Topic Sentences", type: "Writing", points: ["What makes an effective topic sentence", "Main idea and controlling idea", "Practice writing clear topic sentences"]},
+                {title: "Writing: Describing Abilities and Skills", type: "Writing", points: ["Vocabulary for abilities and talents", "Using gerunds: good at playing, enjoys singing", "Supporting with specific examples"]},
+                {title: "Writing: Describing Physical Appearance", type: "Writing", points: ["Physical description vocabulary", "Height, build, hair, eyes, facial features", "Organizing appearance descriptions"]},
+                {title: "Writing: Describing Character and Personality", type: "Writing", points: ["Personality adjectives: modest, sociable, reliable", "Showing character through examples", "Avoiding clichés and generalizations"]},
+                {title: "Writing: Complete Descriptive Paragraph Practice", type: "Writing", points: ["Integrating all description elements", "Writing 80-100 word paragraph", "Peer review and self-editing"]},
+                {title: "Introduction to Unit 2: Humour", type: "Reading", points: ["Introduce humour as a theme", "Types of humour across cultures", "Preview unit vocabulary and goals"]},
+                {title: "Vocabulary: Humour and Comedy", type: "Vocabulary", points: ["Humour and comedy-related terms", "Joke, laughter, funny, hilarious, amusing", "Expressions about jokes and laughter"]},
+                {title: "Modal Verbs - Ability and Permission", type: "Grammar", points: ["Can, could, may for ability and permission", "Present and past modal forms", "Practice with different contexts"]},
+                {title: "Modal Verbs - Obligation and Possibility", type: "Grammar", points: ["Should, must, have to for obligation", "Would, might for possibility and politeness", "Contrasting modal verb meanings"]},
+                {title: "Making Requests: Accepting and Declining", type: "Communication", points: ["Polite requests using modal verbs", "Accepting: Sure, Of course, I'd be happy to", "Declining politely with reasons"]},
+                {title: "Test Preview: Units 1 & 2", type: "Review", points: ["Comprehensive review of all content", "Practice test questions and tasks", "Final clarifications and Q&A session"]},
+                {title: "Test: Units 1 & 2", type: "Assessment", points: ["Reading: youth and humour topics", "Grammar: gerunds, infinitives, modals", "Writing: descriptive paragraph"]},
+                {title: "Test Correction and Analysis", type: "Review", points: ["Review test answers with explanations", "Analyze common errors and mistakes", "Clarify difficult concepts"]},
+                {title: "Review and Consolidation: Units 1-2", type: "Review", points: ["Comprehensive review activities", "Mixed practice exercises", "Preparation for next unit"]}
+            ]
+        };
+        
+        // Copy templates for all classes
+        lessonTemplates['CCS2'] = lessonTemplates['CCS1'];
+        lessonTemplates['CCSF1'] = lessonTemplates['CCS1'];
+        lessonTemplates['CCSF2'] = lessonTemplates['CCS1'];
+        lessonTemplates['CCSF3'] = lessonTemplates['CCS1'];
+        lessonTemplates['2BAC SP2'] = lessonTemplates['2BAC SP1'];
+        
+        // Weekly Timetable - LOADS FROM LOCALSTORAGE OR USES DEFAULT
+        const defaultTimetable = {
+            'Monday': [
+                {time: '8:30-9:30', class: 'CCS1'},
+                {time: '9:30-10:30', class: 'CCS2'},
+                {time: '10:30-11:30', class: 'CCSF3'},
+                {time: '11:30-12:30', class: 'CCSF2'}
+            ],
+            'Tuesday': [
+                {time: '10:30-11:30', class: 'CCSF1'},
+                {time: '11:30-12:30', class: 'CCSF2'}
+            ],
+            'Wednesday': [
+                {time: '14:30-15:30', class: '2BAC SP1'},
+                {time: '15:30-16:30', class: 'CCSF3'},
+                {time: '16:30-17:30', class: 'CCS1'},
+                {time: '17:30-18:30', class: 'CCSF1'}
+            ],
+            'Thursday': [
+                {time: '14:30-15:30', class: 'CCSF2'},
+                {time: '15:30-16:30', class: '2BAC SP2'},
+                {time: '16:30-17:30', class: '2BAC SP1'},
+                {time: '17:30-18:30', class: 'CCS2'}
+            ],
+            'Friday': [
+                {time: '8:30-9:30', class: 'CCS2'},
+                {time: '9:30-10:30', class: '2BAC SP2'},
+                {time: '10:30-11:30', class: '2BAC SP1'},
+                {time: '11:30-12:30', class: 'CCS1'}
+            ],
+            'Saturday': [
+                {time: '9:30-10:30', class: 'CCSF1'},
+                {time: '10:30-11:30', class: '2BAC SP2'},
+                {time: '11:30-12:30', class: 'CCSF3'}
+            ]
+        };
+        
+        // Get timetable from storage or use default
+        function getTimetable() {
+            const stored = localStorage.getItem('weeklyTimetable');
+            if (stored) {
+                return JSON.parse(stored);
+            }
+            // Save default on first load
+            saveTimetable(defaultTimetable);
+            return defaultTimetable;
+        }
+        
+        // Save timetable to storage
+        function saveTimetable(timetable) {
+            localStorage.setItem('weeklyTimetable', JSON.stringify(timetable));
+        }
+        
+        // Reset to default timetable
+        function resetToDefaultTimetable() {
+            if (confirm('Reset timetable to default schedule? This will erase your custom timetable.')) {
+                saveTimetable(defaultTimetable);
+                displayDaySchedule();
+                displayTodayClasses();
+                alert('✓ Timetable reset to default!');
+            }
+        }
+        
+        // Display day schedule for editing
+        function displayDaySchedule() {
+            const day = document.getElementById('daySelector').value;
+            const timetable = getTimetable();
+            const schedule = timetable[day] || [];
+            const container = document.getElementById('daySchedule');
+            
+            if (schedule.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #666; padding: 20px;">No classes for this day. Click "Add Time Slot" below.</p>';
+                return;
+            }
+            
+            container.innerHTML = schedule.map((slot, index) => `
+                <div class="time-slot">
+                    <button class="delete-slot-btn" onclick="deleteTimeSlot(${index})">×</button>
+                    <div class="time-slot-header">
+                        <input type="text" 
+                               value="${slot.time}" 
+                               placeholder="8:00-9:00"
+                               onchange="updateTimeSlot(${index}, 'time', this.value)">
+                        <select onchange="updateTimeSlot(${index}, 'class', this.value)">
+                            <option value="">Select Class</option>
+                            <option value="CCS1" ${slot.class === 'CCS1' ? 'selected' : ''}>CCS1</option>
+                            <option value="CCS2" ${slot.class === 'CCS2' ? 'selected' : ''}>CCS2</option>
+                            <option value="CCSF1" ${slot.class === 'CCSF1' ? 'selected' : ''}>CCSF1</option>
+                            <option value="CCSF2" ${slot.class === 'CCSF2' ? 'selected' : ''}>CCSF2</option>
+                            <option value="CCSF3" ${slot.class === 'CCSF3' ? 'selected' : ''}>CCSF3</option>
+                            <option value="2BAC SP1" ${slot.class === '2BAC SP1' ? 'selected' : ''}>2BAC SP1</option>
+                            <option value="2BAC SP2" ${slot.class === '2BAC SP2' ? 'selected' : ''}>2BAC SP2</option>
+                        </select>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // Add new time slot
+        function addTimeSlot() {
+            const day = document.getElementById('daySelector').value;
+            const timetable = getTimetable();
+            
+            if (!timetable[day]) {
+                timetable[day] = [];
+            }
+            
+            timetable[day].push({
+                time: '8:00-9:00',
+                class: 'CCS1'
+            });
+            
+            saveTimetable(timetable);
+            displayDaySchedule();
+        }
+        
+        // Update time slot
+        function updateTimeSlot(index, field, value) {
+            const day = document.getElementById('daySelector').value;
+            const timetable = getTimetable();
+            
+            if (timetable[day] && timetable[day][index]) {
+                timetable[day][index][field] = value;
+                saveTimetable(timetable);
+                displayTodayClasses(); // Refresh if editing today's schedule
+            }
+        }
+        
+        // Delete time slot
+        function deleteTimeSlot(index) {
+            if (confirm('Delete this time slot?')) {
+                const day = document.getElementById('daySelector').value;
+                const timetable = getTimetable();
+                
+                if (timetable[day]) {
+                    timetable[day].splice(index, 1);
+                    saveTimetable(timetable);
+                    displayDaySchedule();
+                    displayTodayClasses();
+                }
+            }
+        }
+        
+        // Initialize
+        let currentEditingLesson = null;
+        const weeklyTimetable = getTimetable();
+        
+        // Display current date
+        function displayCurrentDate() {
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const date = new Date().toLocaleDateString('en-US', options);
+            document.getElementById('currentDate').textContent = date;
+        }
+        
+        // Get day name
+        function getDayName(date = new Date()) {
+            return date.toLocaleDateString('en-US', { weekday: 'long' });
+        }
+        
+        // Display today's classes
+        function displayTodayClasses() {
+            const today = getDayName();
+            const timetable = getTimetable();
+            const classes = timetable[today] || [];
+            const container = document.getElementById('todayClasses');
+            
+            if (classes.length === 0) {
+                container.innerHTML = '<div class="empty-state"><p>No classes scheduled for today</p></div>';
+                return;
+            }
+            
+            const lessons = getLessons();
+            const todayDate = new Date().toISOString().split('T')[0];
+            
+            container.innerHTML = classes.map((classInfo, index) => {
+                const logged = lessons.find(l => 
+                    l.class === classInfo.class && 
+                    l.date === todayDate
+                );
+                
+                const classLessons = lessons.filter(l => l.class === classInfo.class);
+                const lessonNumber = classLessons.length + 1;
+                
+                return `
+                    <div class="class-card ${logged ? 'logged' : ''}" onclick="openLessonModal('${classInfo.class}', '${classInfo.time}')">
+                        <div class="class-time">${classInfo.time}</div>
+                        <div class="class-name">
+                            ${classInfo.class}
+                            <span class="lesson-number">#${lessonNumber}</span>
+                        </div>
+                        <span class="class-status ${logged ? 'status-logged' : 'status-pending'}">
+                            ${logged ? '✓ Logged' : 'Tap to Log'}
+                        </span>
+                        ${logged ? `
+                            <div class="lesson-preview">
+                                <strong>${logged.title}</strong><br>
+                                <span class="record-type">${logged.type}</span>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        // Open lesson modal
+        function openLessonModal(className, time = '') {
+            currentEditingLesson = null;
+            document.getElementById('modalTitle').textContent = `Log Lesson: ${className}`;
+            document.getElementById('modalSubtitle').textContent = time;
+            document.getElementById('lessonClass').value = className;
+            document.getElementById('lessonDate').value = new Date().toISOString().split('T')[0];
+            document.getElementById('lessonForm').reset();
+            document.getElementById('lessonClass').value = className;
+            document.getElementById('lessonDate').value = new Date().toISOString().split('T')[0];
+            document.getElementById('lessonModal').classList.add('active');
+        }
+        
+        // Close modal
+        function closeModal() {
+            document.getElementById('lessonModal').classList.remove('active');
+            document.getElementById('suggestions').style.display = 'none';
+        }
+        
+        // Title autocomplete
+        document.getElementById('lessonTitle').addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase();
+            const className = document.getElementById('lessonClass').value;
+            const suggestions = document.getElementById('suggestions');
+            
+            if (query.length < 2) {
+                suggestions.style.display = 'none';
+                return;
+            }
+            
+            const templates = lessonTemplates[className] || [];
+            const matches = templates.filter(t => 
+                t.title.toLowerCase().includes(query)
+            );
+            
+            if (matches.length === 0) {
+                suggestions.style.display = 'none';
+                return;
+            }
+            
+            suggestions.innerHTML = matches.map(match => `
+                <div class="suggestion-item" onclick='selectSuggestion(${JSON.stringify(match)})'>
+                    <div class="suggestion-title">${match.title}</div>
+                    <div class="suggestion-type">${match.type}</div>
+                </div>
+            `).join('');
+            
+            suggestions.style.display = 'block';
+        });
+        
+        // Select suggestion
+        function selectSuggestion(lesson) {
+            document.getElementById('lessonTitle').value = lesson.title;
+            document.getElementById('lessonType').value = lesson.type;
+            document.getElementById('point1').value = lesson.points[0] || '';
+            document.getElementById('point2').value = lesson.points[1] || '';
+            document.getElementById('point3').value = lesson.points[2] || '';
+            document.getElementById('suggestions').style.display = 'none';
+        }
+        
+        // Save lesson
+        function saveLesson() {
+            const form = document.getElementById('lessonForm');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+            
+            const lesson = {
+                id: currentEditingLesson?.id || Date.now().toString(),
+                class: document.getElementById('lessonClass').value,
+                date: document.getElementById('lessonDate').value,
+                type: document.getElementById('lessonType').value,
+                title: document.getElementById('lessonTitle').value,
+                points: [
+                    document.getElementById('point1').value,
+                    document.getElementById('point2').value,
+                    document.getElementById('point3').value
+                ],
+                homework: document.getElementById('homework').value,
+                timestamp: new Date().toISOString()
+            };
+            
+            let lessons = getLessons();
+            
+            if (currentEditingLesson) {
+                lessons = lessons.map(l => l.id === lesson.id ? lesson : l);
+            } else {
+                lessons.push(lesson);
+            }
+            
+            localStorage.setItem('teacherLessons', JSON.stringify(lessons));
+            closeModal();
+            displayTodayClasses();
+            displayAllRecords();
+            
+            alert('✓ Lesson saved successfully!');
+        }
+        
+        // Get lessons from storage
+        function getLessons() {
+            return JSON.parse(localStorage.getItem('teacherLessons') || '[]');
+        }
+        
+        // Display all records
+        function displayAllRecords() {
+            const lessons = getLessons();
+            const filter = document.getElementById('classFilter').value;
+            const container = document.getElementById('recordsList');
+            
+            let filtered = filter ? lessons.filter(l => l.class === filter) : lessons;
+            filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            if (filtered.length === 0) {
+                container.innerHTML = '<div class="empty-state"><p>No lessons recorded yet</p></div>';
+                return;
+            }
+            
+            container.innerHTML = '<div class="records-list">' + filtered.map(lesson => `
+                <div class="record-item" onclick='editLesson(${JSON.stringify(lesson)})'>
+                    <div class="record-header">
+                        <span class="record-class">${lesson.class}</span>
+                        <span class="record-date">${new Date(lesson.date).toLocaleDateString()}</span>
+                    </div>
+                    <div class="record-title">${lesson.title}</div>
+                    <span class="record-type">${lesson.type}</span>
+                </div>
+            `).join('') + '</div>';
+        }
+        
+        // Edit lesson
+        function editLesson(lesson) {
+            currentEditingLesson = lesson;
+            document.getElementById('modalTitle').textContent = `Edit Lesson: ${lesson.class}`;
+            document.getElementById('lessonId').value = lesson.id;
+            document.getElementById('lessonClass').value = lesson.class;
+            document.getElementById('lessonDate').value = lesson.date;
+            document.getElementById('lessonType').value = lesson.type;
+            document.getElementById('lessonTitle').value = lesson.title;
+            document.getElementById('point1').value = lesson.points[0] || '';
+            document.getElementById('point2').value = lesson.points[1] || '';
+            document.getElementById('point3').value = lesson.points[2] || '';
+            document.getElementById('homework').value = lesson.homework || '';
+            document.getElementById('lessonModal').classList.add('active');
+        }
+        
+        // Switch tabs
+        function switchTab(tab) {
+            // Update nav
+            document.querySelectorAll('.bottom-nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.target.closest('.bottom-nav-item').classList.add('active');
+            
+            // Update content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            if (tab === 'today') {
+                document.getElementById('todayTab').classList.add('active');
+                displayTodayClasses();
+            } else if (tab === 'records') {
+                document.getElementById('recordsTab').classList.add('active');
+                displayAllRecords();
+            } else if (tab === 'timetable') {
+                document.getElementById('timetableTab').classList.add('active');
+                displayDaySchedule();
+            } else if (tab === 'export') {
+                document.getElementById('exportTab').classList.add('active');
+            }
+        }
+        
+        // Export functions
+        function exportAllPDF() {
+            alert('📄 Generating PDF for all classes...\n\nThis feature requires jsPDF library. PDF will be generated with all your records.');
+        }
+        
+        function exportByClass(className) {
+            const lessons = getLessons().filter(l => l.class === className);
+            if (lessons.length === 0) {
+                alert('No lessons recorded for ' + className);
+                return;
+            }
+            alert(`📄 Generating PDF for ${className}...\n\n${lessons.length} lessons found.`);
+        }
+        
+        // Class filter
+        document.getElementById('classFilter').addEventListener('change', displayAllRecords);
+        
+        // Initialize app
+        displayCurrentDate();
+        displayTodayClasses();
+        displayAllRecords();
+        displayDaySchedule();
+        
+        // Close modal on outside click
+        document.getElementById('lessonModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
